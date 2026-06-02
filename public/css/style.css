@@ -272,19 +272,7 @@ footer { content-visibility: auto; contain-intrinsic-size: 0 400px; }
   z-index: 1;
 }
 
-/* ─── Page Transition (eski slide kaldırıldı) ─────────────────── */
-.page-transition { display: none; }
-
-/* ─── Page Transition ────────────────────────────────────────── */
-.page-transition {
-  position: fixed;
-  inset: 0;
-  background: var(--blue-700);
-  z-index: 9999;
-  transform: translateX(-100%);
-  pointer-events: none;
-}
-.page-transition.active { transform: translateX(0); }
+/* Sayfa geçiş efekti kaldırıldı — sadece sıcaklık loader mevcut */
 
 /* ─── Header ─────────────────────────────────────────────────── */
 #site-header {

@@ -108,7 +108,7 @@ function initMobileNav() {
 }
 
 // ─── Page Transitions ─────────────────────────────────────────────
-// frost.js tarafından yönetiliyor
+// Sade geçiş — frost overlay kaldırıldı
 function initPageTransitions() {}
 
 // ─── Scroll Reveal ────────────────────────────────────────────────
