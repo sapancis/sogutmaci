@@ -53,7 +53,7 @@
 
 /* ─── Reset ──────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
+html { scroll-behavior: smooth; font-size: 16px; text-size-adjust: 100%; }
 body {
   font-family: var(--font);
   background: var(--white);
@@ -61,12 +61,39 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
 }
-img { max-width: 100%; height: auto; display: block; }
+img {
+  max-width: 100%; height: auto; display: block;
+  /* Görünür olmadan yükleme */
+  content-visibility: auto;
+}
+img[loading="lazy"] { decoding: async; }
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 button { cursor: pointer; border: none; background: none; font-family: var(--font); }
 input, textarea, select { font-family: var(--font); }
+
+/* ─── Performans: ekran dışı bölümler ────────────────────────── */
+.section { contain: layout style; }
+footer { content-visibility: auto; contain-intrinsic-size: 0 400px; }
+
+/* ─── GPU optimizasyonu ──────────────────────────────────────── */
+.service-card,
+.why-card,
+.brand-card,
+.gallery-item {
+  will-change: transform;
+  transform: translateZ(0);
+}
+/* Animasyon bittikten sonra will-change sıfırla */
+.service-card:not(:hover),
+.why-card:not(:hover),
+.brand-card:not(:hover),
+.gallery-item:not(:hover) {
+  will-change: auto;
+}
 
 /* ─── Loading Screen — Frost Theme ───────────────────────────── */
 #page-loader {

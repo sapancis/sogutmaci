@@ -88,9 +88,12 @@
   const BASE_RY = 0.28;
   let tX = BASE_RX, tY = BASE_RY, cX = BASE_RX, cY = BASE_RY;
 
-  // Sayfa tamamen render olduktan sonra GLB yükle (render thread bloklanmasın)
-  setTimeout(() => loader.load(
-    '/models/ac.glb',
+  // Canvas görünür olduğunda ve sayfa yüklendikten sonra GLB yükle
+  let glbLoaded = false;
+  function startGLBLoad() {
+    if (glbLoaded) return;
+    glbLoaded = true;
+    setTimeout(() => loader.load('/models/ac.glb',
 
     // ─── Yüklendi ─────────────────────────────────────────────
     (gltf) => {
@@ -167,9 +170,27 @@
     // ─── Hata ─────────────────────────────────────────────────
     (err) => {
       console.error('GLB hatası:', err);
-      loadingDiv.innerHTML = `<p style="color:#EF4444;font-family:Inter,sans-serif;font-size:14px;">Model yüklenemedi</p>`;
+      if (loadingDiv) loadingDiv.innerHTML = `<p style="color:#EF4444;font-size:14px;">Model yüklenemedi</p>`;
     }
-  ), 800); // 800ms sonra yükle
+  ), 600); // 600ms sonra yükle
+  } // startGLBLoad end
+
+  // IntersectionObserver: canvas görünür olduğunda yükle
+  const canvasObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        startGLBLoad();
+        canvasObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.1 });
+
+  // Sayfa yüklendikten sonra observer başlat
+  if (document.readyState === 'complete') {
+    canvasObserver.observe(canvas);
+  } else {
+    window.addEventListener('load', () => canvasObserver.observe(canvas), { once: true });
+  }
 
   let mixer = null;
 
