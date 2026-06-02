@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>İletişim | Everest Soğutma Niğde</title>
+  <meta name="description" content="Everest Soğutma ile iletişime geçin. Klima ve soğutma için ücretsiz teklif alın.">
+  <link rel="icon" href="/images/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  
+</head>
+<body>
+<div id="page-loader" style="position:fixed;inset:0;z-index:99999;background:#020D20;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+  <img class="loader-logo" src="/images/logo.png" alt="Everest Soğutma" style="width:90px;opacity:.8;">
+</div>
+<style>#page-loader{position:fixed!important;inset:0!important;z-index:99999!important;}</style>
+<header id="site-header" class="solid">
+  <div class="header-inner">
+    <a href="/" class="header-logo">
+      <img src="/images/logo.png" alt="Everest Soğutma" data-logo>
+      <div><div class="logo-text">Everest Soğutma</div><div class="logo-sub">Niğde</div></div>
+    </a>
+    <nav class="header-nav">
+      <a href="/" class="nav-link">Anasayfa</a>
+      <a href="/hakkimizda.html" class="nav-link">Hakkımızda</a>
+      <a href="/hizmetler.html" class="nav-link">Hizmetler</a>
+      <a href="/yetkili-servis.html" class="nav-link">Yetkili Servis</a>
+      <a href="/galeri.html" class="nav-link">Galeri</a>
+      <a href="/iletisim.html" class="nav-link">İletişim</a>
+    </nav>
+    <div class="header-actions">
+      <a href="/iletisim.html" class="btn-header">Teklif Al</a>
+      <button class="hamburger" aria-label="Menü"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<div class="mobile-nav-overlay"></div>
+<nav class="mobile-nav">
+  <a href="/" class="mobile-nav-link">Anasayfa</a>
+  <a href="/hakkimizda.html" class="mobile-nav-link">Hakkımızda</a>
+  <a href="/hizmetler.html" class="mobile-nav-link">Hizmetler</a>
+  <div class="divider"></div>
+  <a href="/yetkili-servis.html" class="mobile-nav-link">Yetkili Servis</a>
+  <a href="/galeri.html" class="mobile-nav-link">Galeri</a>
+  <a href="/iletisim.html" class="mobile-nav-link">İletişim</a>
+  <a href="/iletisim.html" class="mobile-cta">Hemen Teklif Al</a>
+</nav>
+<section class="page-hero"><div class="page-hero-inner">
+  <p class="page-hero-label">Bize Ulaşın</p>
+  <h1 class="page-hero-title">İletişim</h1>
+  <p class="page-hero-subtitle">Sorularınız, teklif talepleriniz ve randevu için bize ulaşın.</p>
+  <nav class="breadcrumb"><a href="/">Anasayfa</a><span class="sep">›</span><span>İletişim</span></nav>
+</div></section>
+
+<section class="section">
+  <div class="container">
+    <div class="contact-layout">
+      <div>
+        <div class="contact-form-card" data-reveal>
+          <h2 class="contact-form-title">Mesaj Gönderin</h2>
+          <p class="contact-form-subtitle">Formu doldurun, en kısa sürede size dönüş yapalım.</p>
+          <form id="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Ad Soyad *</label>
+                <input type="text" class="form-input" name="name" placeholder="Adınız Soyadınız" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">E-posta *</label>
+                <input type="email" class="form-input" name="email" placeholder="email@ornek.com" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Telefon</label>
+                <input type="tel" class="form-input" name="phone" placeholder="+90 5XX XXX XX XX">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Konu</label>
+                <input type="text" class="form-input" name="subject" placeholder="Konu başlığı">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Mesajınız *</label>
+              <textarea class="form-input" name="message" placeholder="Mesajınızı buraya yazın..." rows="5" required></textarea>
+            </div>
+            <button type="submit" class="form-submit" id="submit-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Mesaj Gönder
+            </button>
+            <div class="form-success" id="form-success">✓ Mesajınız alındı! En kısa sürede size dönüş yapacağız.</div>
+            <div class="form-error" id="form-error">✕ Bir hata oluştu, lütfen tekrar deneyin.</div>
+          </form>
+        </div>
+      </div>
+
+      <div class="contact-info-panel" data-reveal data-reveal-delay="2">
+        <div class="contact-info-card">
+          <h3>İletişim Bilgileri</h3>
+          <div class="contact-detail">
+            <div class="contact-detail-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div><div class="contact-detail-label">Adres</div><div class="contact-detail-value" id="info-address">Merkez Mah. Atatürk Cad. No:45, Niğde</div></div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+            <div><div class="contact-detail-label">Telefon</div><div class="contact-detail-value" id="info-phone">+90 388 XXX XX XX</div></div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div><div class="contact-detail-label">E-posta</div><div class="contact-detail-value" id="info-email">info@everestsogutma.com</div></div>
+          </div>
+        </div>
+
+        <div class="hours-card">
+          <h4>Çalışma Saatleri</h4>
+          <div class="hours-row"><span class="hours-day">Pazartesi - Cuma</span><span class="hours-time" id="hours-wd">08:00 - 18:00</span></div>
+          <div class="hours-row"><span class="hours-day">Cumartesi</span><span class="hours-time" id="hours-sat">09:00 - 16:00</span></div>
+          <div class="hours-row"><span class="hours-day">Pazar</span><span class="hours-time closed" id="hours-sun">Kapalı</span></div>
+        </div>
+
+        <div class="map-card">
+          <div style="width:100%;height:200px;background:var(--blue-50);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:var(--gray-400);">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <p style="font-size:13px;">Harita admin panelinden eklenebilir</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+// İletişim formu
+document.getElementById('contact-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  const success = document.getElementById('form-success');
+  const error = document.getElementById('form-error');
+  success.style.display = 'none';
+  error.style.display = 'none';
+  btn.disabled = true;
+  btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation:spin .8s linear infinite;"><path d="M21 12a9 9 0 11-6.219-8.56"/></svg> Gönderiliyor...';
+  try {
+    const data = Object.fromEntries(new FormData(e.target));
+    const res = await fetch('/api/contact', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data) });
+    const json = await res.json();
+    if (res.ok) { success.style.display = 'block'; e.target.reset(); }
+    else { error.textContent = '✕ ' + (json.error || 'Hata oluştu'); error.style.display = 'block'; }
+  } catch { error.style.display = 'block'; }
+  finally { btn.disabled = false; btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Mesaj Gönder'; }
+});
+// Load contact info
+fetch('/api/content/contact').then(r=>r.json()).then(c=>{
+  if(!c) return;
+  if(c.address) document.getElementById('info-address').textContent = c.address;
+  if(c.phone) document.getElementById('info-phone').textContent = c.phone;
+  if(c.email) document.getElementById('info-email').textContent = c.email;
+  if(c.hours) {
+    if(c.hours.weekdays) document.getElementById('hours-wd').textContent = c.hours.weekdays;
+    if(c.hours.saturday) document.getElementById('hours-sat').textContent = c.hours.saturday;
+    if(c.hours.sunday) document.getElementById('hours-sun').textContent = c.hours.sunday;
+  }
+  if(c.map_embed) document.querySelector('.map-card').innerHTML = c.map_embed;
+}).catch(()=>{});
+</script>
+<section class="cta-section">
+  <div class="cta-inner" data-reveal>
+    <h2 class="cta-title">Ücretsiz Keşif ve Fiyat Teklifi</h2>
+    <p class="cta-text">Uzman ekibimiz en kısa sürede yanınızda. Hemen iletişime geçin.</p>
+    <div class="cta-actions">
+      <a href="/iletisim.html" class="btn-white">Teklif Al</a>
+      <a href="tel:+903888888888" class="btn-ghost">Hemen Ara</a>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo"><img src="/images/logo.png" alt="Everest Soğutma" data-logo><span class="footer-logo-text">Everest Soğutma</span></div>
+      <p class="footer-tagline">Niğde'nin güvenilir soğutma çözüm ortağı.</p>
+    </div>
+    <div class="footer-col"><h4>Sayfalar</h4><div class="footer-links">
+      <a href="/" class="footer-link">Anasayfa</a>
+      <a href="/hakkimizda.html" class="footer-link">Hakkımızda</a>
+      <a href="/hizmetler.html" class="footer-link">Hizmetler</a>
+      <a href="/yetkili-servis.html" class="footer-link">Yetkili Servis</a>
+      <a href="/galeri.html" class="footer-link">Galeri</a>
+      <a href="/iletisim.html" class="footer-link">İletişim</a>
+    </div></div>
+    <div class="footer-col"><h4>Hizmetler</h4><div class="footer-links">
+      <a href="/hizmet/klima-montaj.html" class="footer-link">Klima Montaj</a>
+      <a href="/hizmet/klima-bakim.html" class="footer-link">Klima Bakım</a>
+      <a href="/hizmet/soguk-hava-deposu.html" class="footer-link">Soğuk Hava Deposu</a>
+      <a href="/hizmet/soguk-hava-bakim.html" class="footer-link">Depo Servisi</a>
+      <a href="/hizmet/sanayi-klima.html" class="footer-link">Sanayi Soğutma</a>
+      <a href="/hizmet/enerji-verimliligi.html" class="footer-link">Enerji Verimliliği</a>
+    </div></div>
+    <div class="footer-col"><h4>İletişim</h4>
+      <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-footer-address>Niğde Merkez</span></div>
+      <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><span data-footer-phone>+90 388 XXX XX XX</span></div>
+      <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span data-footer-email>info@everestsogutma.com</span></div>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <p class="footer-copyright">© 2024 Everest Soğutma. Tüm hakları saklıdır.</p>
+  </div>
+</footer>
+<a href="#" class="whatsapp-fab" style="display:none;" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.5 2C6.262 2 2 6.262 2 11.5c0 1.892.526 3.663 1.438 5.168L2 22l5.437-1.43A9.44 9.44 0 0011.5 21C16.738 21 21 16.738 21 11.5S16.738 2 11.5 2z"/></svg>
+</a>
+<script src="/js/main.js"></script>
+<script src="/js/frost.js"></script>
+</body>
+</html>

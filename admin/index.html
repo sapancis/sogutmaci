@@ -1,0 +1,531 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Paneli | Everest Soğutma</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/admin/css/admin.css">
+</head>
+<body>
+
+<div class="admin-layout">
+
+  <!-- Sidebar Overlay (mobile) -->
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <!-- Sidebar -->
+  <aside class="admin-sidebar" id="admin-sidebar">
+    <div class="sidebar-brand">
+      <img src="/images/logo.svg" alt="Logo" id="sidebar-logo" onerror="this.style.display='none'">
+      <div>
+        <div class="sidebar-brand-text">Everest Soğutma</div>
+        <div class="sidebar-brand-sub">Admin Paneli</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <p class="sidebar-section-label">Genel</p>
+      <a href="#" class="sidebar-link active" data-section="dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Dashboard
+      </a>
+      <a href="#" class="sidebar-link" data-section="messages">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Mesajlar
+        <span class="sidebar-badge" id="msg-badge" style="display:none;">0</span>
+      </a>
+
+      <p class="sidebar-section-label">İçerik</p>
+      <a href="#" class="sidebar-link" data-section="home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        Anasayfa
+      </a>
+      <a href="#" class="sidebar-link" data-section="about">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="4"/><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/></svg>
+        Hakkımızda
+      </a>
+      <a href="#" class="sidebar-link" data-section="services">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+        Hizmetler
+      </a>
+      <a href="#" class="sidebar-link" data-section="authorized">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Yetkili Servis
+      </a>
+      <a href="#" class="sidebar-link" data-section="gallery">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        Galeri
+      </a>
+      <a href="#" class="sidebar-link" data-section="contact-page">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        İletişim Bilgileri
+      </a>
+      <a href="#" class="sidebar-link" data-section="footer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        Footer
+      </a>
+
+      <p class="sidebar-section-label">Ayarlar</p>
+      <a href="#" class="sidebar-link" data-section="settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>
+        Site Ayarları
+      </a>
+      <a href="#" class="sidebar-link" data-section="seo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        SEO Ayarları
+      </a>
+      <a href="#" class="sidebar-link" data-section="password">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        Şifre Değiştir
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="/" target="_blank" class="sidebar-site-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Siteyi Görüntüle
+      </a>
+      <button class="btn-logout" id="logout-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Çıkış Yap
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <button class="topbar-hamburger" id="topbar-hamburger">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <h1 class="topbar-title" id="topbar-title">Dashboard</h1>
+      <div class="topbar-actions">
+        <div class="topbar-avatar">A</div>
+      </div>
+    </div>
+
+    <div class="admin-content">
+
+      <!-- ═══ DASHBOARD ═══ -->
+      <div class="admin-section active" id="section-dashboard">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
+            <div><div class="stat-value" id="dash-services-count">6</div><div class="stat-label">Hizmet</div></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+            <div><div class="stat-value" id="dash-gallery-count">0</div><div class="stat-label">Fotoğraf</div></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div><div class="stat-value" id="dash-msgs-count">0</div><div class="stat-label">Mesaj</div></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div><div class="stat-value" id="dash-unread-count">0</div><div class="stat-label">Okunmamış</div></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><h2 class="card-title">Hızlı Erişim</h2></div>
+          <div class="card-body" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;">
+            <button class="btn btn-secondary" style="justify-content:center;padding:16px;" data-section="gallery">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+              Fotoğraf Ekle
+            </button>
+            <button class="btn btn-secondary" style="justify-content:center;padding:16px;" data-section="services">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><path d="M12 5v14M5 12h14"/></svg>
+              Hizmet Ekle
+            </button>
+            <button class="btn btn-secondary" style="justify-content:center;padding:16px;" data-section="messages">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>
+              Mesajlar
+            </button>
+            <button class="btn btn-secondary" style="justify-content:center;padding:16px;" data-section="settings">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>
+              Site Ayarları
+            </button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><h2 class="card-title">Son Mesajlar</h2></div>
+          <div id="dash-msgs-list"><div style="padding:24px;text-align:center;color:var(--gray-400);font-size:14px;">Yükleniyor...</div></div>
+        </div>
+      </div>
+
+      <!-- ═══ MESSAGES ═══ -->
+      <div class="admin-section" id="section-messages">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">İletişim Mesajları</h2>
+            <button class="btn btn-sm btn-secondary" id="refresh-msgs-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+              Yenile
+            </button>
+          </div>
+          <div class="card-body" id="messages-list">
+            <div style="text-align:center;color:var(--gray-400);padding:40px;">Yükleniyor...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ HOME PAGE ═══ -->
+      <div class="admin-section" id="section-home">
+        <div class="card">
+          <div class="card-header"><h2 class="card-title">Anasayfa İçeriği</h2></div>
+          <div class="card-body">
+            <div class="alert alert-success" id="home-alert"></div>
+            <div class="tab-bar">
+              <button class="tab-btn active" data-tab="home-hero">Hero Bölümü</button>
+              <button class="tab-btn" data-tab="home-about">Hakkımızda Özeti</button>
+              <button class="tab-btn" data-tab="home-stats">İstatistikler</button>
+            </div>
+            <div class="tab-panel active" id="home-hero">
+              <div class="form-group"><label class="form-label">Hero Başlık</label><input type="text" class="form-input" id="hero-title"></div>
+              <div class="form-group"><label class="form-label">Hero Alt Başlık</label><textarea class="form-textarea" id="hero-subtitle" rows="3"></textarea></div>
+              <div class="form-row">
+                <div class="form-group"><label class="form-label">Birincil Buton Yazısı</label><input type="text" class="form-input" id="hero-cta-primary"></div>
+                <div class="form-group"><label class="form-label">İkincil Buton Yazısı</label><input type="text" class="form-input" id="hero-cta-secondary"></div>
+              </div>
+            </div>
+            <div class="tab-panel" id="home-about">
+              <div class="form-group"><label class="form-label">Başlık</label><input type="text" class="form-input" id="about-teaser-title"></div>
+              <div class="form-group"><label class="form-label">Metin</label><textarea class="form-textarea" id="about-teaser-text" rows="5"></textarea></div>
+            </div>
+            <div class="tab-panel" id="home-stats">
+              <p style="font-size:13px;color:var(--gray-500);margin-bottom:16px;">4 istatistik kartı (Değer | Etiket formatında)</p>
+              <div id="stats-editor"></div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary" id="save-home-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13"/><polyline points="7 3 7 8 15 8"/></svg>
+              Kaydet
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ ABOUT PAGE ═══ -->
+      <div class="admin-section" id="section-about">
+        <div class="card">
+          <div class="card-header"><h2 class="card-title">Hakkımızda Sayfası</h2></div>
+          <div class="card-body">
+            <div class="alert alert-success" id="about-alert"></div>
+            <div class="form-group"><label class="form-label">Sayfa Başlığı</label><input type="text" class="form-input" id="about-title-input"></div>
+            <div class="form-group"><label class="form-label">Alt Başlık</label><input type="text" class="form-input" id="about-subtitle-input"></div>
+            <div class="form-group"><label class="form-label">Firma Hikayesi</label><textarea class="form-textarea" id="about-story-input" rows="6"></textarea></div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">Vizyon</label><textarea class="form-textarea" id="about-vision-input" rows="4"></textarea></div>
+              <div class="form-group"><label class="form-label">Misyon</label><textarea class="form-textarea" id="about-mission-input" rows="4"></textarea></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Sertifikalar (her satıra bir tane)</label>
+              <textarea class="form-textarea" id="about-certs-input" rows="6"></textarea>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary" id="save-about-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13"/><polyline points="7 3 7 8 15 8"/></svg>
+              Kaydet
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ SERVICES ═══ -->
+      <div class="admin-section" id="section-services">
+        <div class="card" style="margin-bottom:20px;">
+          <div class="card-header">
+            <h2 class="card-title">Hizmetler</h2>
+            <button class="btn btn-primary btn-sm" id="add-service-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Hizmet Ekle
+            </button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Hizmet Adı</th><th>Kısa Açıklama</th><th>Özellikler</th><th>İşlem</th></tr></thead>
+              <tbody id="services-table-body">
+                <tr><td colspan="4" style="text-align:center;color:var(--gray-400);padding:32px;">Yükleniyor...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ AUTHORIZED SERVICE ═══ -->
+      <div class="admin-section" id="section-authorized">
+        <div class="card">
+          <div class="card-header"><h2 class="card-title">Yetkili Servis Sayfası</h2></div>
+          <div class="card-body">
+            <div class="alert alert-success" id="auth-alert"></div>
+            <div class="form-group"><label class="form-label">Sayfa Başlığı</label><input type="text" class="form-input" id="auth-title-input"></div>
+            <div class="form-group"><label class="form-label">Alt Başlık</label><input type="text" class="form-input" id="auth-subtitle-input"></div>
+            <div class="form-group"><label class="form-label">Tanıtım Metni</label><textarea class="form-textarea" id="auth-intro-input" rows="5"></textarea></div>
+            <div class="form-group">
+              <label class="form-label">Avantajlar (her satıra bir tane)</label>
+              <textarea class="form-textarea" id="auth-advantages-input" rows="6"></textarea>
+            </div>
+            <hr style="margin:24px 0;border:none;border-top:1px solid var(--gray-200);">
+            <h3 style="font-size:15px;font-weight:700;margin-bottom:16px;">Markalar</h3>
+            <div id="brands-editor"></div>
+            <button class="btn btn-secondary btn-sm" id="add-brand-btn" style="margin-top:12px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Marka Ekle
+            </button>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary" id="save-auth-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13"/><polyline points="7 3 7 8 15 8"/></svg>
+              Kaydet
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ GALLERY ═══ -->
+      <div class="admin-section" id="section-gallery">
+        <div class="card" style="margin-bottom:20px;">
+          <div class="card-header"><h2 class="card-title">Fotoğraf Yükle</h2></div>
+          <div class="card-body">
+            <div class="alert alert-success" id="gallery-alert"></div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">Fotoğraf Başlığı</label><input type="text" class="form-input" id="gallery-title-input" placeholder="Örn: Klima Montajı - ABC Market"></div>
+              <div class="form-group"><label class="form-label">Kategori</label>
+                <select class="form-select" id="gallery-cat-input">
+                  <option>Klima Montaj</option>
+                  <option>Klima Bakım</option>
+                  <option>Soğuk Hava Deposu</option>
+                  <option>Sanayi</option>
+                  <option>Genel</option>
+                </select>
+              </div>
+            </div>
+            <div class="upload-zone" id="gallery-upload-zone">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <p>Fotoğraf yüklemek için tıklayın veya sürükleyin</p>
+              <p style="font-size:12px;margin-top:6px;">JPG, PNG, WEBP — Maks. 10MB</p>
+              <input type="file" id="gallery-file-input" accept="image/*" multiple style="display:none;">
+            </div>
+            <div id="gallery-preview" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;"></div>
+            <button class="btn btn-primary" id="upload-gallery-btn" style="margin-top:16px;" disabled>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              Yükle
+            </button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Galeri</h2>
+            <button class="btn btn-sm btn-secondary" id="refresh-gallery-btn">Yenile</button>
+          </div>
+          <div class="card-body">
+            <div class="admin-gallery-grid" id="admin-gallery-grid">
+              <div style="grid-column:1/-1;text-align:center;color:var(--gray-400);padding:32px;">Yükleniyor...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ CONTACT PAGE ═══ -->
+      <div class="admin-section" id="section-contact-page">
+        <div class="card">
+          <div class="card-header"><h2 class="card-title">İletişim Bilgileri</h2></div>
+          <div class="card-body">
+            <div class="alert alert-success" id="contact-page-alert"></div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">Telefon</label><input type="text" class="form-input" id="cp-phone" placeholder="+90 388 XXX XX XX"></div>
+              <div class="form-group"><label class="form-label">Cep Telefonu</label><input type="text" class="form-input" id="cp-mobile" placeholder="+90 5XX XXX XX XX"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">E-posta</label><input type="email" class="form-input" id="cp-email"></div>
+              <div class="form-group"><label class="form-label">WhatsApp</label><input type="text" class="form-input" id="cp-whatsapp" placeholder="+90 5XX XXX XX XX"></div>
+            </div>
+            <div class="form-group"><label class="form-label">Adres</label><textarea class="form-textarea" id="cp-address" rows="2"></textarea></div>
+            <hr style="margin:20px 0;border:none;border-top:1px solid var(--gray-200);">
+            <h3 style="font-size:15px;font-weight:700;margin-bottom:16px;">Çalışma Saatleri</h3>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">Pazartesi - Cuma</label><input type="text" class="form-input" id="cp-weekdays" placeholder="08:00 - 18:00"></div>
+              <div class="form-group"><label class="form-label">Cumartesi</label><input type="text" class="form-input" id="cp-saturday" placeholder="09:00 - 16:00"></div>
+            </div>
+            <div class="form-group"><label class="form-label">Pazar</label><input type="text" class="form-input" id="cp-sunday" placeholder="Kapalı" style="max-width:240px;"></div>
+            <hr style="margin:20px 0;border:none;border-top:1px solid var(--gray-200);">
+            <h3 style="font-size:15px;font-weight:700;margin-bottom:16px;">Sosyal Medya & Harita</h3>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">Facebook URL</label><input type="url" class="form-input" id="cp-facebook" placeholder="https://facebook.com/..."></div>
+              <div class="form-group"><label class="form-label">Instagram URL</label><input type="url" class="form-input" id="cp-instagram" placeholder="https://instagram.com/..."></div>
+            </div>
+            <div class="form-group"><label class="form-label">Google Maps Embed URL <span class="form-hint" style="display:inline;font-size:12px;color:var(--gray-400);">(Google Maps &gt; Paylaş &gt; Haritayı Göm &gt; src= kısmı)</span></label><input type="text" class="form-input" id="cp-map-embed" placeholder="https://www.google.com/maps/embed?pb=..."></div>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary" id="save-contact-page-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13"/><polyline points="7 3 7 8 15 8"/></svg>
+              Kaydet
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ FOOTER ═══ -->
+      <div class="admin-section" id="section-footer">
+        <div class="card">
+          <div class="card-header"><h2 class="card-title">Footer Düzenle</h2></div>
+          <div class="card-body">
+            <div class="alert alert-success" id="footer-alert"></div>
+            <div class="form-group"><label class="form-label">Tagline (kısa açıklama)</label><input type="text" class="form-input" id="footer-tagline-input"></div>
+            <div class="form-group"><label class="form-label">Telif Hakkı Yazısı</label><input type="text" class="form-input" id="footer-copyright-input"></div>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary" id="save-footer-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13"/><polyline points="7 3 7 8 15 8"/></svg>
+              Kaydet
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ SETTINGS ═══ -->
+      <div class="admin-section" id="section-settings">
+        <div class="card" style="margin-bottom:20px;">
+          <div class="card-header"><h2 class="card-title">Site Logosu</h2></div>
+          <div class="card-body">
+            <div class="alert alert-success" id="logo-alert"></div>
+            <div class="current-logo" id="current-logo-wrap">
+              <img src="/images/logo.svg" id="current-logo-img" height="48" alt="Logo">
+              <p>Mevcut logo</p>
+            </div>
+            <div class="upload-zone" id="logo-upload-zone" style="max-width:440px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <p>Yeni logo yüklemek için tıklayın</p>
+              <p style="font-size:12px;margin-top:4px;">PNG önerilir (şeffaf arka plan)</p>
+              <input type="file" id="logo-file-input" accept="image/*" style="display:none;">
+            </div>
+            <button class="btn btn-primary" id="upload-logo-btn" style="margin-top:12px;" disabled>Logo Yükle</button>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom:20px;">
+          <div class="card-header"><h2 class="card-title">Site Ayarları</h2></div>
+          <div class="card-body">
+            <div class="alert alert-success" id="settings-alert"></div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">Site Adı</label><input type="text" class="form-input" id="setting-site-name"></div>
+              <div class="form-group"><label class="form-label">Kısa Açıklama</label><input type="text" class="form-input" id="setting-tagline"></div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary" id="save-settings-btn">Kaydet</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><h2 class="card-title">E-posta (SMTP) Ayarları</h2></div>
+          <div class="card-body">
+            <div class="alert alert-success" id="smtp-alert"></div>
+            <p style="font-size:13px;color:var(--gray-500);margin-bottom:16px;">İletişim formundan gelen mesajlar bu e-posta üzerinden iletilir.</p>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">SMTP Host</label><input type="text" class="form-input" id="smtp-host" placeholder="smtp.gmail.com"></div>
+              <div class="form-group"><label class="form-label">Port</label><input type="number" class="form-input" id="smtp-port" placeholder="587"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">Kullanıcı Adı (e-posta)</label><input type="email" class="form-input" id="smtp-user" placeholder="ornek@gmail.com"></div>
+              <div class="form-group"><label class="form-label">Şifre / App Password</label><input type="password" class="form-input" id="smtp-pass" placeholder="••••••••••••"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">Gönderici Adı</label><input type="text" class="form-input" id="smtp-from-name" placeholder="Everest Soğutma"></div>
+              <div class="form-group"><label class="form-label">Gönderici E-posta</label><input type="email" class="form-input" id="smtp-from-email"></div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary" id="save-smtp-btn">Kaydet</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ SEO ═══ -->
+      <div class="admin-section" id="section-seo">
+        <div class="card">
+          <div class="card-header"><h2 class="card-title">SEO Ayarları</h2></div>
+          <div class="card-body">
+            <div class="alert alert-success" id="seo-alert"></div>
+            <div class="form-group"><label class="form-label">Meta Başlık</label><input type="text" class="form-input" id="seo-title"><div class="form-hint">Önerilen: 50-60 karakter</div></div>
+            <div class="form-group"><label class="form-label">Meta Açıklama</label><textarea class="form-textarea" id="seo-desc" rows="3"></textarea><div class="form-hint">Önerilen: 150-160 karakter</div></div>
+            <div class="form-group"><label class="form-label">Anahtar Kelimeler</label><input type="text" class="form-input" id="seo-keywords" placeholder="kelime1, kelime2, kelime3"></div>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary" id="save-seo-btn">Kaydet</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ PASSWORD ═══ -->
+      <div class="admin-section" id="section-password">
+        <div class="card" style="max-width:480px;">
+          <div class="card-header"><h2 class="card-title">Şifre Değiştir</h2></div>
+          <div class="card-body">
+            <div class="alert alert-success" id="pw-alert-success"></div>
+            <div class="alert alert-error" id="pw-alert-error"></div>
+            <div class="form-group"><label class="form-label">Mevcut Şifre</label><input type="password" class="form-input" id="pw-current"></div>
+            <div class="form-group"><label class="form-label">Yeni Şifre</label><input type="password" class="form-input" id="pw-new"></div>
+            <div class="form-group"><label class="form-label">Yeni Şifre (Tekrar)</label><input type="password" class="form-input" id="pw-confirm"></div>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary" id="save-pw-btn">Şifreyi Güncelle</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /admin-content -->
+  </main>
+</div><!-- /admin-layout -->
+
+<!-- ═══ SERVICE MODAL ═══ -->
+<div class="modal-overlay" id="service-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 class="modal-title" id="service-modal-title">Hizmet Ekle</h3>
+      <button class="modal-close" data-close="service-modal">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="service-modal-id">
+      <div class="form-group"><label class="form-label">Hizmet Adı *</label><input type="text" class="form-input" id="svc-title"></div>
+      <div class="form-group"><label class="form-label">URL Kimliği (slug) *</label><input type="text" class="form-input" id="svc-id" placeholder="ornek: klima-montaj"><div class="form-hint">Küçük harf, Türkçe karakter kullanmayın, tire ile ayırın</div></div>
+      <div class="form-group"><label class="form-label">Kısa Açıklama</label><input type="text" class="form-input" id="svc-short-desc"></div>
+      <div class="form-group"><label class="form-label">Detaylı Açıklama</label><textarea class="form-textarea" id="svc-content" rows="5"></textarea></div>
+      <div class="form-group">
+        <label class="form-label">Özellikler (her satıra bir tane)</label>
+        <textarea class="form-textarea" id="svc-features" rows="7"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" data-close="service-modal">İptal</button>
+      <button class="btn btn-primary" id="save-service-btn">Kaydet</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CONFIRM MODAL ═══ -->
+<div class="modal-overlay" id="confirm-modal">
+  <div class="modal" style="max-width:400px;">
+    <div class="modal-header">
+      <h3 class="modal-title">Silme Onayı</h3>
+      <button class="modal-close" data-close="confirm-modal">✕</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:15px;color:var(--gray-600);" id="confirm-msg">Bu öğeyi silmek istediğinizden emin misiniz?</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" data-close="confirm-modal">İptal</button>
+      <button class="btn btn-danger" id="confirm-delete-btn">Sil</button>
+    </div>
+  </div>
+</div>
+
+<script src="/admin/js/admin.js"></script>
+</body>
+</html>

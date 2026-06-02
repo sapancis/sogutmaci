@@ -1,0 +1,10 @@
+node_modules/
+uploads/
+data/contacts.json
+.env
+*.log
+app.pid
+gen_pages.py
+upload.py
+.DS_Store
+Thumbs.db

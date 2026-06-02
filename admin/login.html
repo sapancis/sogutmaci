@@ -1,0 +1,253 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Girişi | Everest Soğutma</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0F172A 0%, #1B3A5C 50%, #0F172A 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    body::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(33,118,174,.2) 0%, transparent 70%);
+      top: -200px; right: -100px;
+      pointer-events: none;
+    }
+    body::after {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(27,79,114,.3) 0%, transparent 70%);
+      bottom: -100px; left: -100px;
+      pointer-events: none;
+    }
+    .login-card {
+      background: rgba(255,255,255,.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 24px;
+      padding: 48px 40px;
+      width: 100%;
+      max-width: 420px;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 40px 80px rgba(0,0,0,.4);
+    }
+    .login-logo {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .login-logo img {
+      height: 60px;
+      margin: 0 auto 12px;
+      display: block;
+      filter: brightness(0) invert(1);
+      opacity: .9;
+    }
+    .login-logo h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+    .login-logo p {
+      font-size: 13px;
+      color: rgba(255,255,255,.5);
+      margin-top: 4px;
+    }
+    .login-form-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: rgba(255,255,255,.7);
+      margin-bottom: 24px;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+    .form-group { margin-bottom: 16px; }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,.6);
+      margin-bottom: 8px;
+    }
+    .form-input {
+      width: 100%;
+      padding: 13px 16px;
+      background: rgba(255,255,255,.08);
+      border: 1.5px solid rgba(255,255,255,.12);
+      border-radius: 12px;
+      font-size: 15px;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color .2s, background .2s;
+    }
+    .form-input:focus {
+      border-color: rgba(46,134,193,.6);
+      background: rgba(255,255,255,.12);
+    }
+    .form-input::placeholder { color: rgba(255,255,255,.3); }
+    .password-wrap { position: relative; }
+    .password-toggle {
+      position: absolute;
+      right: 14px; top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: rgba(255,255,255,.4);
+      cursor: pointer;
+      padding: 4px;
+      display: flex;
+    }
+    .password-toggle:hover { color: rgba(255,255,255,.8); }
+    .btn-login {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #2E86C1, #1B4F72);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s, opacity .2s;
+      margin-top: 8px;
+      box-shadow: 0 4px 20px rgba(33,118,174,.4);
+    }
+    .btn-login:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 8px 30px rgba(33,118,174,.5); }
+    .btn-login:disabled { opacity: .7; cursor: not-allowed; }
+    .login-error {
+      background: rgba(220,38,38,.15);
+      border: 1px solid rgba(220,38,38,.3);
+      color: #FCA5A5;
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 14px;
+      margin-top: 12px;
+      display: none;
+      text-align: center;
+    }
+    .login-back {
+      text-align: center;
+      margin-top: 24px;
+    }
+    .login-back a {
+      font-size: 13px;
+      color: rgba(255,255,255,.4);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .login-back a:hover { color: rgba(255,255,255,.7); }
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="login-card">
+  <div class="login-logo">
+    <img src="/images/logo.svg" alt="Everest Soğutma" onerror="this.style.display='none'">
+    <h1>Everest Soğutma</h1>
+    <p>Admin Paneli</p>
+  </div>
+
+  <p class="login-form-title">Devam etmek için giriş yapın</p>
+
+  <form id="login-form">
+    <div class="form-group">
+      <label class="form-label" for="password">Şifre</label>
+      <div class="password-wrap">
+        <input type="password" id="password" class="form-input" placeholder="Admin şifrenizi girin" required autocomplete="current-password">
+        <button type="button" class="password-toggle" id="toggle-pw" aria-label="Şifreyi göster">
+          <svg id="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <button type="submit" class="btn-login" id="login-btn">Giriş Yap</button>
+    <div class="login-error" id="login-error">Şifre hatalı. Lütfen tekrar deneyin.</div>
+  </form>
+
+  <div class="login-back">
+    <a href="/">← Siteye Dön</a>
+  </div>
+</div>
+
+<script>
+  // Redirect if already logged in
+  if (localStorage.getItem('admin_token')) {
+    fetch('/api/auth/verify', {
+      headers: { Authorization: 'Bearer ' + localStorage.getItem('admin_token') }
+    }).then(r => {
+      if (r.ok) window.location.href = '/admin/';
+    }).catch(() => {});
+  }
+
+  const form = document.getElementById('login-form');
+  const btn = document.getElementById('login-btn');
+  const errorEl = document.getElementById('login-error');
+  const pwInput = document.getElementById('password');
+  const togglePw = document.getElementById('toggle-pw');
+
+  togglePw.addEventListener('click', () => {
+    const isPass = pwInput.type === 'password';
+    pwInput.type = isPass ? 'text' : 'password';
+    togglePw.querySelector('svg').innerHTML = isPass
+      ? '<path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>'
+      : '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorEl.style.display = 'none';
+    btn.disabled = true;
+    btn.textContent = 'Giriş yapılıyor...';
+
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: pwInput.value })
+      });
+      const data = await res.json();
+      if (res.ok && data.token) {
+        localStorage.setItem('admin_token', data.token);
+        window.location.href = '/admin/';
+      } else {
+        errorEl.textContent = data.error || 'Şifre hatalı.';
+        errorEl.style.display = 'block';
+        pwInput.value = '';
+        pwInput.focus();
+      }
+    } catch(err) {
+      errorEl.textContent = 'Sunucu bağlantısı kurulamadı.';
+      errorEl.style.display = 'block';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Giriş Yap';
+    }
+  });
+</script>
+</body>
+</html>

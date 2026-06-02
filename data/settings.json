@@ -1,0 +1,24 @@
+{
+  "site_name": "Everest Soğutma",
+  "site_tagline": "Profesyonel Klima ve Soğutma Çözümleri",
+  "site_url": "http://localhost:3000",
+  "logo": "/uploads/c62aa3e4-d5d7-4dcc-b14d-048d9de849a1.jpeg",
+  "favicon": "/images/favicon.ico",
+  "admin_password_hash": "$2a$10$lc1eFelFjgPh8nDSm006fulXob.IUPJwQ/D60fIWNLMtNmjDMDVOu",
+  "jwt_secret": "everest_sogutma_secret_2024_nigde",
+  "smtp": {
+    "host": "smtp.gmail.com",
+    "port": 587,
+    "secure": false,
+    "user": "",
+    "pass": "",
+    "from_email": "info@everestsogutma.com",
+    "from_name": "Everest Soğutma"
+  },
+  "seo": {
+    "meta_title": "Everest Soğutma | Niğde Klima ve Soğuk Hava Deposu",
+    "meta_description": "Niğde'nin güvenilir klima montaj, bakım ve soğuk hava deposu kurulum firması. 15 yıllık deneyim, uzman kadro, garantili hizmet.",
+    "meta_keywords": "klima montaj niğde, soğuk hava deposu niğde, klima bakım, klima onarım, yetkili servis niğde, everest soğutma",
+    "og_image": "/images/og-image.jpg"
+  }
+}
