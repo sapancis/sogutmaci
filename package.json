@@ -1,11 +1,16 @@
 {
   "name": "everest-sogutma",
   "version": "1.0.0",
-  "description": "Everest Soğutma Niğde - Profesyonel Klima ve Soğuk Hava Deposu Hizmetleri",
-  "main": "server.js",
+  "description": "Everest Sogutma Nigde - Profesyonel Klima ve Soguk Hava Deposu Hizmetleri",
+  "main": "index.js",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "node index.js",
+    "build": "npm install --production",
+    "dev": "nodemon index.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
