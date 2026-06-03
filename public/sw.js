@@ -3,22 +3,17 @@
    Statik dosyaları cache'le, tekrar ziyarette anında yükle
    ═══════════════════════════════════════════════════════════════ */
 
-const CACHE_NAME = 'everest-v2';
-const CACHE_STATIC = 'everest-static-v2';
-const CACHE_PAGES  = 'everest-pages-v2';
+const CACHE_NAME = 'everest-v3';
+const CACHE_STATIC = 'everest-static-v3';
+const CACHE_PAGES  = 'everest-pages-v3';
 
-// Hemen cache'lenecek kritik kaynaklar
+// Hemen cache'lenecek kritik küçük kaynaklar (GLB yok — 42MB SW cache'e koymak kötü)
 const PRECACHE = [
   '/',
   '/css/style.css',
   '/js/main.js',
   '/js/frost.js',
   '/images/logo.png',
-  '/hizmetler.html',
-  '/hakkimizda.html',
-  '/iletisim.html',
-  '/galeri.html',
-  '/yetkili-servis.html',
 ];
 
 // ─── Install ────────────────────────────────────────────────────
@@ -52,20 +47,10 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // GLB model: Cache-first (büyük dosya, nadir değişir)
-  if (url.pathname.endsWith('.glb')) {
-    event.respondWith(
-      caches.open(CACHE_STATIC).then(cache =>
-        cache.match(request).then(cached => {
-          if (cached) return cached;
-          return fetch(request).then(res => {
-            if (res.ok) cache.put(request, res.clone());
-            return res;
-          }).catch(() => cached);
-        })
-      )
-    );
-    return;
+  // GLB model: Cache'leme — 42MB çok büyük, SW cache'e koyma
+  // Sunucu Cache-Control: max-age=2592000 (30 gün) zaten HTTP cache'i halleder
+  if (url.pathname.endsWith('.glb') || url.pathname.endsWith('.gltf')) {
+    return; // SW müdahale etmez, tarayıcının normal HTTP cache'i çalışır
   }
 
   // Statik dosyalar (css, js, images, fonts): Stale-while-revalidate
