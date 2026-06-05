@@ -126,42 +126,164 @@ function initRevealAnimations() {
 }
 
 // ─── WhatsApp FAB ─────────────────────────────────────────────────
+function buildWhatsappLink() {
+  const c = siteContent?.contact;
+  if (!c?.whatsapp) return null;
+  // Placeholder (X içeren) numaraları atla
+  if (/[xX]/.test(c.whatsapp)) return null;
+  const phone = c.whatsapp.replace(/\D/g, '');
+  if (phone.length < 10) return null;
+  const msg = c.whatsapp_message || 'Merhaba, bilgi almak istiyorum.';
+  return `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+}
+
 function initWhatsappFab() {
+  const link = buildWhatsappLink();
+  // Floating button
   const fab = document.querySelector('.whatsapp-fab');
-  if (!fab || !siteContent?.contact?.whatsapp) return;
-  const phone = siteContent.contact.whatsapp.replace(/\D/g, '');
-  fab.href = `https://wa.me/${phone}`;
-  fab.style.display = 'flex';
+  if (fab && link) {
+    fab.href = link;
+    fab.target = '_blank';
+    fab.rel = 'noopener';
+    fab.style.display = 'flex';
+  }
+  // Tüm whatsapp linkleri (footer, iletişim vs.)
+  document.querySelectorAll('[data-whatsapp-link]').forEach(a => {
+    if (link) { a.href = link; a.target = '_blank'; a.rel = 'noopener'; }
+  });
+}
+
+// ─── Yardımcı: güvenli metin/HTML/görsel set ──────────────────────
+function setText(sel, val, root = document) {
+  if (val == null) return;
+  root.querySelectorAll(sel).forEach(el => { el.textContent = val; });
+}
+function setHTML(sel, val, root = document) {
+  if (val == null) return;
+  root.querySelectorAll(sel).forEach(el => { el.innerHTML = val; });
+}
+function setImage(sel, url, root = document) {
+  if (!url) return;
+  root.querySelectorAll(sel).forEach(img => {
+    img.src = url;
+    img.style.display = 'block';
+    // varsa placeholder'ı gizle
+    const ph = img.parentElement?.querySelector('[data-img-placeholder]');
+    if (ph) ph.style.display = 'none';
+  });
 }
 
 // ─── Dynamic Content ──────────────────────────────────────────────
 function applyDynamicContent() {
   if (!siteContent) return;
+  const C = siteContent;
 
-  // Footer
-  const footer = document.querySelector('footer');
-  if (footer && siteContent.footer) {
-    const tagline = footer.querySelector('.footer-tagline');
-    if (tagline) tagline.textContent = siteContent.footer.tagline || '';
-    const copyright = footer.querySelector('.footer-copyright');
-    if (copyright) copyright.textContent = siteContent.footer.copyright || '';
-  }
-
-  // Logo across page
+  // ═══ HER SAYFADA: Logo ═══
   if (siteSettings?.logo) {
     document.querySelectorAll('[data-logo]').forEach(img => img.src = siteSettings.logo);
     document.querySelectorAll('.footer-logo img').forEach(img => img.src = siteSettings.logo);
   }
+  if (siteSettings?.site_name) {
+    setText('[data-site-name]', siteSettings.site_name);
+  }
 
-  // Contact info in footer
-  if (siteContent.contact) {
-    const c = siteContent.contact;
-    const setFooterContact = (selector, val) => {
-      document.querySelectorAll(selector).forEach(el => { if (val) el.textContent = val; });
+  // ═══ FOOTER ═══
+  if (C.footer) {
+    setText('.footer-tagline', C.footer.tagline);
+    setText('.footer-copyright', C.footer.copyright);
+  }
+  if (C.contact) {
+    setText('[data-footer-phone]', C.contact.phone);
+    setText('[data-footer-email]', C.contact.email);
+    setText('[data-footer-address]', C.contact.address);
+  }
+
+  // ═══ SOSYAL MEDYA ═══
+  if (C.contact?.social) {
+    const s = C.contact.social;
+    const setSocial = (id, url) => {
+      const el = document.getElementById(id);
+      if (el && url) { el.href = url; el.target = '_blank'; el.rel = 'noopener'; el.style.display = 'flex'; }
     };
-    setFooterContact('[data-footer-phone]', c.phone);
-    setFooterContact('[data-footer-email]', c.email);
-    setFooterContact('[data-footer-address]', c.address);
+    setSocial('footer-facebook', s.facebook);
+    setSocial('footer-instagram', s.instagram);
+  }
+
+  // ═══ ANASAYFA: HERO ═══
+  if (C.home?.hero) {
+    const h = C.home.hero;
+    if (h.title) setHTML('[data-hero-title]', h.title);
+    if (h.subtitle) setText('[data-hero-subtitle]', h.subtitle);
+    if (h.cta_primary) setText('[data-hero-cta-primary]', h.cta_primary);
+    if (h.cta_secondary) setText('[data-hero-cta-secondary]', h.cta_secondary);
+  }
+
+  // ═══ ANASAYFA: İSTATİSTİKLER ═══
+  if (C.home?.stats?.length) {
+    const statItems = document.querySelectorAll('.hero-stats .stat-item');
+    C.home.stats.forEach((stat, i) => {
+      if (statItems[i]) {
+        const v = statItems[i].querySelector('.stat-value');
+        const l = statItems[i].querySelector('.stat-label');
+        if (v) v.textContent = stat.value;
+        if (l) l.textContent = stat.label;
+      }
+    });
+  }
+
+  // ═══ ANASAYFA: HAKKIMIZDA TEASER ═══
+  if (C.home?.about_teaser) {
+    const a = C.home.about_teaser;
+    setText('[data-about-label]', a.label);
+    setHTML('[data-about-heading]', a.heading);
+    setText('[data-about-text]', a.text);
+    setText('[data-about-text2]', a.text2);
+    setImage('[data-about-image]', a.image);
+  }
+
+  // ═══ HAKKIMIZDA SAYFASI ═══
+  if (C.about) {
+    const a = C.about;
+    setText('[data-page-about-title]', a.title);
+    setText('[data-page-about-subtitle]', a.subtitle);
+    setHTML('[data-page-about-heading]', a.heading);
+    setText('[data-page-about-story]', a.story);
+    setText('[data-page-about-story2]', a.story2);
+    setImage('[data-page-about-image]', a.image);
+  }
+
+  // ═══ YETKİLİ SERVİS SAYFASI ═══
+  if (C.authorized_service) {
+    const a = C.authorized_service;
+    setText('[data-auth-title]', a.title);
+    setText('[data-auth-subtitle]', a.subtitle);
+    setText('[data-auth-intro]', a.intro);
+
+    // Markaları dinamik render et
+    const brandsGrid = document.getElementById('brands-grid');
+    if (brandsGrid && a.brands?.length) {
+      brandsGrid.innerHTML = a.brands.map((b, i) => `
+        <div class="brand-card" data-reveal data-reveal-delay="${(i % 6) + 1}">
+          <div class="brand-logo">
+            ${b.logo
+              ? `<img src="${b.logo}" alt="${b.name}" loading="lazy">`
+              : `<div style="font-size:28px;font-weight:900;color:var(--blue-700);letter-spacing:-.02em;">${(b.name || '').toUpperCase()}</div>`}
+          </div>
+          <h3 class="brand-name">${b.name || ''}</h3>
+          <p class="brand-desc">${b.desc || ''}</p>
+        </div>
+      `).join('');
+      // Yeni eklenen kartlara reveal animasyonu uygula
+      brandsGrid.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('revealed'));
+    }
+  }
+
+  // ═══ İLETİŞİM bilgileri (footer + her yerde) ═══
+  if (C.contact) {
+    setText('[data-contact-phone]', C.contact.phone);
+    setText('[data-contact-email]', C.contact.email);
+    setText('[data-contact-address]', C.contact.address);
+    setText('[data-contact-mobile]', C.contact.mobile);
   }
 }
 

@@ -1,14 +1,23 @@
 {
   "home": {
     "hero": {
-      "title": "Profesyonel Soğutma Çözümleri",
-      "subtitle": "Niğde ve çevresinde klima, soğuk hava deposu ve endüstriyel soğutma sistemlerinde 15 yıllık deneyim.",
+      "title": "Profesyonel <span>Soğutma</span> Çözümleri",
+      "subtitle": "Klima montajı, bakım-onarım ve soğuk hava deposu kurulumunda 15 yıllık deneyimimizle yanınızdayız.",
       "cta_primary": "Hizmetlerimizi Keşfedin",
       "cta_secondary": "Bize Ulaşın"
     },
     "about_teaser": {
+      "label": "Hakkımızda",
+      "heading": "15 Yıllık Deneyim, Güvenilir Hizmet",
       "title": "Everest Soğutma Hakkında",
-      "text": "2009 yılından bu yana Niğde'de faaliyet gösteren Everest Soğutma, klima montajı, bakımı ve soğuk hava deposu kurulumunda bölgenin güvenilir adresi olmayı başarmıştır. Uzman kadromuz ve gelişmiş ekipmanlarımızla ev ve işyerlerinize en kaliteli soğutma çözümlerini sunuyoruz."
+      "text": "2009 yılında Niğde'de kurulan Everest Soğutma, klima ve soğutma sistemleri alanında bölgenin en güvenilir firması olmayı başarmıştır.",
+      "text2": "Uzman kadromuz ve son teknoloji ekipmanlarımızla ev ve işyerlerinizin soğutma ihtiyaçlarına kalıcı çözümler üretiyoruz.",
+      "image": "",
+      "badges": [
+        "Daikin Yetkili Servis",
+        "Mitsubishi Yetkili Servis",
+        "ISO 9001:2015 Belgeli"
+      ]
     },
     "stats": [
       { "value": "15+", "label": "Yıllık Deneyim" },
@@ -26,7 +35,10 @@
   "about": {
     "title": "Hakkımızda",
     "subtitle": "Bölgenin en güvenilir soğutma sistemi firması",
-    "story": "Everest Soğutma, 2009 yılında Niğde'de kurulmuştur. Kuruluşumuzdan bu yana müşteri memnuniyetini ön planda tutarak büyümeye devam ettik. Bugün 20 kişilik uzman kadromuzla ev ve işyerlerinizin soğutma ihtiyaçlarına çözüm üretiyoruz.",
+    "heading": "2009'dan Bugüne Everest Soğutma",
+    "story": "2009 yılında Niğde'de kurulan Everest Soğutma, klima ve soğutma sistemleri alanında bölgenin en güvenilir firması olmayı başarmıştır. Kuruluşumuzdan bu yana müşteri memnuniyetini ön planda tutarak, her geçen yıl büyümeye ve gelişmeye devam ettik.",
+    "story2": "Bugün 20 kişilik uzman kadromuzla Niğde ve çevresindeki ev ve işyerlerinin soğutma ihtiyaçlarına kalıcı çözümler üretiyoruz. Daikin, Mitsubishi Electric ve Bosch gibi dünya markalarının yetkili servisi olarak müşterilerimize orijinal yedek parça ve fabrika standartlarında hizmet güvencesi veriyoruz.",
+    "image": "",
     "vision": "Türkiye'nin en güvenilir soğutma sistemleri firması olmak ve müşterilerimize en yüksek kalitede hizmet sunmak.",
     "mission": "Yenilikçi teknolojileri ve uzman kadromuzu bir araya getirerek, müşterilerimizin konfor ve güvenliğini en üst düzeyde sağlamak.",
     "team": [
@@ -167,6 +179,7 @@
     "mobile": "+90 5XX XXX XX XX",
     "email": "info@everestsogutma.com",
     "whatsapp": "+90 5XX XXX XX XX",
+    "whatsapp_message": "Merhaba, soğutma hizmetleriniz hakkında bilgi almak istiyorum.",
     "hours": {
       "weekdays": "08:00 - 18:00",
       "saturday": "09:00 - 16:00",

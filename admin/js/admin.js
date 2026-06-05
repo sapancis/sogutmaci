@@ -38,6 +38,56 @@ function showAlert(id, msg, type = 'success') {
   setTimeout(() => el.classList.remove('show'), 4000);
 }
 
+// ─── Görsel Yükleme Helper ────────────────────────────────────
+// key: alan adı (örn: 'about-teaser-image')
+// Şunlar olmalı: #<key> (hidden input), #<key>-preview, #<key>-btn, #<key>-clear, #<key>-file
+function setupImageUpload(key) {
+  const hidden = document.getElementById(key);
+  const preview = document.getElementById(key + '-preview');
+  const btn = document.getElementById(key + '-btn');
+  const clear = document.getElementById(key + '-clear');
+  const file = document.getElementById(key + '-file');
+  if (!hidden || !btn || !file) return;
+
+  const applyPreview = (url) => {
+    if (preview) preview.style.backgroundImage = url ? `url(${url})` : '';
+    if (preview) preview.innerHTML = url ? '' : '<span style="display:flex;align-items:center;justify-content:center;height:100%;color:#aaa;font-size:11px;">Görsel yok</span>';
+  };
+
+  // İlk durum
+  applyPreview(hidden.value);
+
+  btn.addEventListener('click', () => file.click());
+  clear?.addEventListener('click', () => { hidden.value = ''; applyPreview(''); });
+
+  file.addEventListener('change', async () => {
+    if (!file.files.length) return;
+    const fd = new FormData();
+    fd.append('file', file.files[0]);
+    btn.disabled = true;
+    const orig = btn.textContent;
+    btn.textContent = 'Yükleniyor...';
+    try {
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        headers: { Authorization: 'Bearer ' + TOKEN() },
+        body: fd
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Yüklenemedi');
+      hidden.value = data.url;
+      applyPreview(data.url);
+    } catch (e) {
+      alert('Görsel yüklenemedi: ' + e.message);
+    } finally {
+      btn.disabled = false; btn.textContent = orig; file.value = '';
+    }
+  });
+
+  // Programatik set için
+  hidden._setValue = (url) => { hidden.value = url || ''; applyPreview(url); };
+}
+
 // ─── Navigation ───────────────────────────────────────────────
 let currentSection = 'dashboard';
 const sectionTitles = {
@@ -129,6 +179,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Bind all save buttons
   bindSaveButtons();
+
+  // Görsel yükleme bileşenleri
+  setupImageUpload('about-teaser-image');
+  setupImageUpload('about-image');
 
   // Load initial section
   navigate('dashboard');
@@ -230,15 +284,25 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ─── HOME ─────────────────────────────────────────────────────
+let homeContentCache = null;
+
 async function loadHome() {
   try {
     const content = await api('/api/content/home');
+    homeContentCache = content;
     document.getElementById('hero-title').value = content.hero?.title || '';
     document.getElementById('hero-subtitle').value = content.hero?.subtitle || '';
     document.getElementById('hero-cta-primary').value = content.hero?.cta_primary || '';
     document.getElementById('hero-cta-secondary').value = content.hero?.cta_secondary || '';
-    document.getElementById('about-teaser-title').value = content.about_teaser?.title || '';
-    document.getElementById('about-teaser-text').value = content.about_teaser?.text || '';
+
+    const at = content.about_teaser || {};
+    document.getElementById('about-teaser-label').value = at.label || '';
+    document.getElementById('about-teaser-heading').value = at.heading || '';
+    document.getElementById('about-teaser-text').value = at.text || '';
+    document.getElementById('about-teaser-text2').value = at.text2 || '';
+    const imgHidden = document.getElementById('about-teaser-image');
+    if (imgHidden._setValue) imgHidden._setValue(at.image || '');
+    else imgHidden.value = at.image || '';
 
     // Stats editor
     const statsEl = document.getElementById('stats-editor');
@@ -265,24 +329,37 @@ async function saveHome() {
       cta_secondary: document.getElementById('hero-cta-secondary').value
     },
     about_teaser: {
-      title: document.getElementById('about-teaser-title').value,
-      text: document.getElementById('about-teaser-text').value
+      label: document.getElementById('about-teaser-label').value,
+      heading: document.getElementById('about-teaser-heading').value,
+      text: document.getElementById('about-teaser-text').value,
+      text2: document.getElementById('about-teaser-text2').value,
+      image: document.getElementById('about-teaser-image').value,
+      badges: homeContentCache?.about_teaser?.badges || []
     },
-    stats
+    stats,
+    why_us: homeContentCache?.why_us || []
   };
   try { await api('/api/content/home', 'PUT', body); showAlert('home-alert', 'Anasayfa güncellendi'); } catch(e) { showAlert('home-alert', e.message, 'error'); }
 }
 
 // ─── ABOUT ────────────────────────────────────────────────────
+let aboutContentCache = null;
+
 async function loadAbout() {
   try {
     const content = await api('/api/content/about');
+    aboutContentCache = content;
     document.getElementById('about-title-input').value = content.title || '';
     document.getElementById('about-subtitle-input').value = content.subtitle || '';
+    document.getElementById('about-heading-input').value = content.heading || '';
     document.getElementById('about-story-input').value = content.story || '';
+    document.getElementById('about-story2-input').value = content.story2 || '';
     document.getElementById('about-vision-input').value = content.vision || '';
     document.getElementById('about-mission-input').value = content.mission || '';
     document.getElementById('about-certs-input').value = (content.certificates || []).join('\n');
+    const imgHidden = document.getElementById('about-image');
+    if (imgHidden._setValue) imgHidden._setValue(content.image || '');
+    else imgHidden.value = content.image || '';
   } catch(e) {}
 }
 
@@ -290,10 +367,14 @@ async function saveAbout() {
   const body = {
     title: document.getElementById('about-title-input').value,
     subtitle: document.getElementById('about-subtitle-input').value,
+    heading: document.getElementById('about-heading-input').value,
     story: document.getElementById('about-story-input').value,
+    story2: document.getElementById('about-story2-input').value,
+    image: document.getElementById('about-image').value,
     vision: document.getElementById('about-vision-input').value,
     mission: document.getElementById('about-mission-input').value,
-    certificates: document.getElementById('about-certs-input').value.split('\n').filter(Boolean)
+    certificates: document.getElementById('about-certs-input').value.split('\n').filter(Boolean),
+    team: aboutContentCache?.team || []
   };
   try { await api('/api/content/about', 'PUT', body); showAlert('about-alert', 'Hakkımızda güncellendi'); } catch(e) { showAlert('about-alert', e.message, 'error'); }
 }
@@ -522,6 +603,7 @@ async function loadContactPage() {
     document.getElementById('cp-mobile').value = content.mobile || '';
     document.getElementById('cp-email').value = content.email || '';
     document.getElementById('cp-whatsapp').value = content.whatsapp || '';
+    document.getElementById('cp-whatsapp-message').value = content.whatsapp_message || '';
     document.getElementById('cp-address').value = content.address || '';
     document.getElementById('cp-weekdays').value = content.hours?.weekdays || '';
     document.getElementById('cp-saturday').value = content.hours?.saturday || '';
@@ -538,6 +620,7 @@ async function saveContactPage() {
     mobile: document.getElementById('cp-mobile').value,
     email: document.getElementById('cp-email').value,
     whatsapp: document.getElementById('cp-whatsapp').value,
+    whatsapp_message: document.getElementById('cp-whatsapp-message').value,
     address: document.getElementById('cp-address').value,
     hours: {
       weekdays: document.getElementById('cp-weekdays').value,

@@ -193,8 +193,23 @@
               </div>
             </div>
             <div class="tab-panel" id="home-about">
-              <div class="form-group"><label class="form-label">Başlık</label><input type="text" class="form-input" id="about-teaser-title"></div>
-              <div class="form-group"><label class="form-label">Metin</label><textarea class="form-textarea" id="about-teaser-text" rows="5"></textarea></div>
+              <div class="form-group"><label class="form-label">Üst Etiket</label><input type="text" class="form-input" id="about-teaser-label" placeholder="Hakkımızda"></div>
+              <div class="form-group"><label class="form-label">Başlık</label><input type="text" class="form-input" id="about-teaser-heading" placeholder="15 Yıllık Deneyim, Güvenilir Hizmet"></div>
+              <div class="form-group"><label class="form-label">1. Paragraf</label><textarea class="form-textarea" id="about-teaser-text" rows="3"></textarea></div>
+              <div class="form-group"><label class="form-label">2. Paragraf</label><textarea class="form-textarea" id="about-teaser-text2" rows="3"></textarea></div>
+              <div class="form-group">
+                <label class="form-label">Görsel</label>
+                <div class="img-upload-row" style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;">
+                  <div class="img-preview" id="about-teaser-image-preview" style="width:120px;height:90px;border-radius:10px;background:var(--gray-100);border:1.5px solid var(--gray-200);background-size:cover;background-position:center;flex-shrink:0;"></div>
+                  <div>
+                    <input type="hidden" id="about-teaser-image">
+                    <button type="button" class="btn btn-secondary btn-sm" id="about-teaser-image-btn">Görsel Seç</button>
+                    <button type="button" class="btn btn-ghost btn-sm" id="about-teaser-image-clear" style="margin-left:6px;">Kaldır</button>
+                    <input type="file" id="about-teaser-image-file" accept="image/*" style="display:none;">
+                    <p style="font-size:12px;color:var(--gray-400);margin-top:6px;">JPG, PNG, WEBP — Maks. 10MB</p>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="tab-panel" id="home-stats">
               <p style="font-size:13px;color:var(--gray-500);margin-bottom:16px;">4 istatistik kartı (Değer | Etiket formatında)</p>
@@ -216,9 +231,26 @@
           <div class="card-header"><h2 class="card-title">Hakkımızda Sayfası</h2></div>
           <div class="card-body">
             <div class="alert alert-success" id="about-alert"></div>
-            <div class="form-group"><label class="form-label">Sayfa Başlığı</label><input type="text" class="form-input" id="about-title-input"></div>
-            <div class="form-group"><label class="form-label">Alt Başlık</label><input type="text" class="form-input" id="about-subtitle-input"></div>
-            <div class="form-group"><label class="form-label">Firma Hikayesi</label><textarea class="form-textarea" id="about-story-input" rows="6"></textarea></div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">Sayfa Başlığı (üst)</label><input type="text" class="form-input" id="about-title-input" placeholder="Hakkımızda"></div>
+              <div class="form-group"><label class="form-label">Alt Başlık</label><input type="text" class="form-input" id="about-subtitle-input"></div>
+            </div>
+            <div class="form-group"><label class="form-label">Bölüm Başlığı</label><input type="text" class="form-input" id="about-heading-input" placeholder="2009'dan Bugüne Everest Soğutma"></div>
+            <div class="form-group"><label class="form-label">Firma Hikayesi (1. Paragraf)</label><textarea class="form-textarea" id="about-story-input" rows="4"></textarea></div>
+            <div class="form-group"><label class="form-label">Firma Hikayesi (2. Paragraf)</label><textarea class="form-textarea" id="about-story2-input" rows="4"></textarea></div>
+            <div class="form-group">
+              <label class="form-label">Hakkımızda Görseli</label>
+              <div class="img-upload-row" style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;">
+                <div class="img-preview" id="about-image-preview" style="width:120px;height:90px;border-radius:10px;background:var(--gray-100);border:1.5px solid var(--gray-200);background-size:cover;background-position:center;flex-shrink:0;"></div>
+                <div>
+                  <input type="hidden" id="about-image">
+                  <button type="button" class="btn btn-secondary btn-sm" id="about-image-btn">Görsel Seç</button>
+                  <button type="button" class="btn btn-ghost btn-sm" id="about-image-clear" style="margin-left:6px;">Kaldır</button>
+                  <input type="file" id="about-image-file" accept="image/*" style="display:none;">
+                  <p style="font-size:12px;color:var(--gray-400);margin-top:6px;">JPG, PNG, WEBP — Maks. 10MB</p>
+                </div>
+              </div>
+            </div>
             <div class="form-row">
               <div class="form-group"><label class="form-label">Vizyon</label><textarea class="form-textarea" id="about-vision-input" rows="4"></textarea></div>
               <div class="form-group"><label class="form-label">Misyon</label><textarea class="form-textarea" id="about-mission-input" rows="4"></textarea></div>
@@ -344,7 +376,11 @@
             </div>
             <div class="form-row">
               <div class="form-group"><label class="form-label">E-posta</label><input type="email" class="form-input" id="cp-email"></div>
-              <div class="form-group"><label class="form-label">WhatsApp</label><input type="text" class="form-input" id="cp-whatsapp" placeholder="+90 5XX XXX XX XX"></div>
+              <div class="form-group"><label class="form-label">WhatsApp Numarası</label><input type="text" class="form-input" id="cp-whatsapp" placeholder="+90 5XX XXX XX XX"></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">WhatsApp Otomatik Mesaj <span style="font-size:12px;color:var(--gray-400);">(Müşteri WhatsApp'a tıklayınca bu mesaj hazır gelir)</span></label>
+              <input type="text" class="form-input" id="cp-whatsapp-message" placeholder="Merhaba, soğutma hizmetleriniz hakkında bilgi almak istiyorum.">
             </div>
             <div class="form-group"><label class="form-label">Adres</label><textarea class="form-textarea" id="cp-address" rows="2"></textarea></div>
             <hr style="margin:20px 0;border:none;border-top:1px solid var(--gray-200);">
