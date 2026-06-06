@@ -297,11 +297,13 @@ function applyDynamicContent() {
   if (!siteContent) return;
   const C = siteContent;
 
-  // ═══ HER SAYFADA: Logo ═══
-  if (siteSettings?.logo) {
-    document.querySelectorAll('[data-logo]').forEach(img => img.src = siteSettings.logo);
-    document.querySelectorAll('.footer-logo img').forEach(img => img.src = siteSettings.logo);
-  }
+  // ═══ HER SAYFADA: Logo (yüklenemezse /images/logo.png fallback) ═══
+  const applyLogo = (img) => {
+    img.onerror = function () { this.onerror = null; this.src = '/images/logo.png'; };
+    img.src = siteSettings?.logo || '/images/logo.png';
+  };
+  document.querySelectorAll('[data-logo]').forEach(applyLogo);
+  document.querySelectorAll('.footer-logo img').forEach(applyLogo);
   if (siteSettings?.site_name) {
     setText('[data-site-name]', siteSettings.site_name);
   }
