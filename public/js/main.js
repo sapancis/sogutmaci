@@ -383,12 +383,22 @@ function applyDynamicContent() {
   // ═══ HAKKIMIZDA SAYFASI ═══
   if (C.about) {
     const a = C.about;
+    setText('[data-page-about-label]', a.label);
     setText('[data-page-about-title]', a.title);
     setText('[data-page-about-subtitle]', a.subtitle);
     setHTML('[data-page-about-heading]', a.heading);
     setText('[data-page-about-story]', a.story);
     setText('[data-page-about-story2]', a.story2);
     setImage('[data-page-about-image]', a.image);
+
+    // Sertifikalar / yetkili servis listesi (dinamik)
+    const certList = document.getElementById('about-cert-list');
+    if (certList && a.certificates?.length) {
+      const certIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>';
+      certList.innerHTML = a.certificates.map(cert =>
+        `<div class="cert-item">${certIcon}${cert}</div>`
+      ).join('');
+    }
   }
 
   // ═══ YETKİLİ SERVİS SAYFASI ═══

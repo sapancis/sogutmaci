@@ -63,6 +63,7 @@
   "about": {
     "title": "Hakkımızda",
     "subtitle": "Bölgenin en güvenilir soğutma sistemi firması",
+    "label": "Hikayemiz",
     "heading": "2009'dan Bugüne Everest Soğutma",
     "story": "2009 yılında Niğde'de kurulan Everest Soğutma, klima ve soğutma sistemleri alanında bölgenin en güvenilir firması olmayı başarmıştır. Kuruluşumuzdan bu yana müşteri memnuniyetini ön planda tutarak, her geçen yıl büyümeye ve gelişmeye devam ettik.",
     "story2": "Bugün 20 kişilik uzman kadromuzla Niğde ve çevresindeki ev ve işyerlerinin soğutma ihtiyaçlarına kalıcı çözümler üretiyoruz. Daikin, Mitsubishi Electric ve Bosch gibi dünya markalarının yetkili servisi olarak müşterilerimize orijinal yedek parça ve fabrika standartlarında hizmet güvencesi veriyoruz.",
@@ -87,11 +88,11 @@
       }
     ],
     "certificates": [
-      "TSE Kalite Belgesi",
       "Daikin Yetkili Servis",
-      "Mitsubishi Yetkili Servis",
+      "Mitsubishi Electric Yetkili Servis",
       "Bosch Yetkili Servis",
-      "ISO 9001:2015"
+      "ISO 9001:2015 Belgeli",
+      "TSE Kalite Belgesi"
     ]
   },
   "services": [

@@ -351,6 +351,7 @@ async function loadAbout() {
     aboutContentCache = content;
     document.getElementById('about-title-input').value = content.title || '';
     document.getElementById('about-subtitle-input').value = content.subtitle || '';
+    document.getElementById('about-label-input').value = content.label || '';
     document.getElementById('about-heading-input').value = content.heading || '';
     document.getElementById('about-story-input').value = content.story || '';
     document.getElementById('about-story2-input').value = content.story2 || '';
@@ -367,6 +368,7 @@ async function saveAbout() {
   const body = {
     title: document.getElementById('about-title-input').value,
     subtitle: document.getElementById('about-subtitle-input').value,
+    label: document.getElementById('about-label-input').value,
     heading: document.getElementById('about-heading-input').value,
     story: document.getElementById('about-story-input').value,
     story2: document.getElementById('about-story2-input').value,
