@@ -258,17 +258,18 @@ function buildWhatsappLink() {
 
 function initWhatsappFab() {
   const link = buildWhatsappLink();
-  // Floating button
+  // Floating button — HER ZAMAN görünür
   const fab = document.querySelector('.whatsapp-fab');
-  if (fab && link) {
-    fab.href = link;
-    fab.target = '_blank';
-    fab.rel = 'noopener';
+  if (fab) {
+    fab.href = link || '/iletisim.html';
+    if (link) { fab.target = '_blank'; fab.rel = 'noopener'; }
     fab.style.display = 'flex';
   }
-  // Tüm whatsapp linkleri (footer, iletişim vs.)
+  // Footer & diğer whatsapp linkleri
   document.querySelectorAll('[data-whatsapp-link]').forEach(a => {
-    if (link) { a.href = link; a.target = '_blank'; a.rel = 'noopener'; }
+    a.href = link || '/iletisim.html';
+    if (link) { a.target = '_blank'; a.rel = 'noopener'; }
+    a.style.display = 'flex';
   });
 }
 
