@@ -246,13 +246,23 @@ function initRevealAnimations() {
 }
 
 // ─── WhatsApp FAB ─────────────────────────────────────────────────
+// Telefon numarasını WhatsApp/uluslararası formata çevir
+// Hangi formatta girilirse girilsin → 90XXXXXXXXXX
+function normalizePhone(raw) {
+  let p = (raw || '').replace(/\D/g, ''); // sadece rakamlar
+  if (!p) return '';
+  p = p.replace(/^0+/, '');               // baştaki 0'ları at (0532 → 532)
+  if (p.startsWith('90')) return p;       // zaten 90 ile başlıyorsa
+  return '90' + p;                        // başına 90 ekle
+}
+
 function buildWhatsappLink() {
   const c = siteContent?.contact;
   if (!c?.whatsapp) return null;
   // Placeholder (X içeren) numaraları atla
   if (/[xX]/.test(c.whatsapp)) return null;
-  const phone = c.whatsapp.replace(/\D/g, '');
-  if (phone.length < 10) return null;
+  const phone = normalizePhone(c.whatsapp);
+  if (phone.length < 12) return null;     // 90 + 10 hane = 12
   const msg = c.whatsapp_message || 'Merhaba, bilgi almak istiyorum.';
   return `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
 }
