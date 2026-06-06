@@ -20,16 +20,44 @@
       ]
     },
     "stats": [
-      { "value": "15+", "label": "Yıllık Deneyim" },
-      { "value": "2000+", "label": "Tamamlanan Proje" },
-      { "value": "500+", "label": "Mutlu Müşteri" },
-      { "value": "7/24", "label": "Teknik Destek" }
+      {
+        "value": "15+",
+        "label": "Yıllık Deneyim"
+      },
+      {
+        "value": "2000+",
+        "label": "Tamamlanan Proje"
+      },
+      {
+        "value": "500+",
+        "label": "Mutlu Müşteri"
+      },
+      {
+        "value": "7/24",
+        "label": "Teknik Destek"
+      }
     ],
     "why_us": [
-      { "icon": "shield-check", "title": "Garantili Hizmet", "text": "Tüm işlemlerimiz garantilidir. İşçilik ve yedek parça güvencesiyle hizmet veriyoruz." },
-      { "icon": "clock", "title": "Hızlı Müdahale", "text": "Acil durumlarda 2 saat içinde yanınızdayız. 7/24 teknik destek hattımız aktiftir." },
-      { "icon": "award", "title": "Yetkili Servis", "text": "Daikin, Mitsubishi, Bosch ve daha birçok markanın yetkili servis noktasıyız." },
-      { "icon": "users", "title": "Uzman Ekip", "text": "Alanında uzman, sertifikalı teknisyenlerimizle en doğru çözümü sunuyoruz." }
+      {
+        "icon": "shield-check",
+        "title": "Garantili Hizmet",
+        "text": "Tüm işlemlerimiz garantilidir. İşçilik ve yedek parça güvencesiyle hizmet veriyoruz."
+      },
+      {
+        "icon": "clock",
+        "title": "Hızlı Müdahale",
+        "text": "Acil durumlarda 2 saat içinde yanınızdayız. 7/24 teknik destek hattımız aktiftir."
+      },
+      {
+        "icon": "award",
+        "title": "Yetkili Servis",
+        "text": "Daikin, Mitsubishi, Bosch ve daha birçok markanın yetkili servis noktasıyız."
+      },
+      {
+        "icon": "users",
+        "title": "Uzman Ekip",
+        "text": "Alanında uzman, sertifikalı teknisyenlerimizle en doğru çözümü sunuyoruz."
+      }
     ]
   },
   "about": {
@@ -42,9 +70,21 @@
     "vision": "Türkiye'nin en güvenilir soğutma sistemleri firması olmak ve müşterilerimize en yüksek kalitede hizmet sunmak.",
     "mission": "Yenilikçi teknolojileri ve uzman kadromuzu bir araya getirerek, müşterilerimizin konfor ve güvenliğini en üst düzeyde sağlamak.",
     "team": [
-      { "name": "Ahmet Yılmaz", "role": "Kurucu & Genel Müdür", "image": "" },
-      { "name": "Mehmet Kaya", "role": "Baş Teknisyen", "image": "" },
-      { "name": "Fatma Demir", "role": "Müşteri İlişkileri", "image": "" }
+      {
+        "name": "Ahmet Yılmaz",
+        "role": "Kurucu & Genel Müdür",
+        "image": ""
+      },
+      {
+        "name": "Mehmet Kaya",
+        "role": "Baş Teknisyen",
+        "image": ""
+      },
+      {
+        "name": "Fatma Demir",
+        "role": "Müşteri İlişkileri",
+        "image": ""
+      }
     ],
     "certificates": [
       "TSE Kalite Belgesi",
@@ -157,12 +197,36 @@
     "subtitle": "Türkiye'nin önde gelen markalarının yetkili servis noktası",
     "intro": "Everest Soğutma olarak Daikin, Mitsubishi Electric, Bosch ve daha birçok prestijli markanın Niğde bölgesindeki yetkili servisi olma gururu yaşıyoruz. Bu yetki belgeleri, müşterilerimize orijinal yedek parça ve fabrika standartlarında hizmet güvencesi vermemizi sağlamaktadır.",
     "brands": [
-      { "name": "Daikin", "logo": "", "desc": "Japon teknolojisi, Türkiye'nin 1 numaralı klima markası" },
-      { "name": "Mitsubishi Electric", "logo": "", "desc": "Üstün teknoloji ve güvenilirlik" },
-      { "name": "Bosch", "logo": "", "desc": "Alman mühendisliği ile ev konforu" },
-      { "name": "LG", "logo": "", "desc": "Yenilikçi teknoloji ve enerji tasarrufu" },
-      { "name": "Samsung", "logo": "", "desc": "Akıllı ev çözümleri" },
-      { "name": "Arçelik", "logo": "", "desc": "Yerli marka, küresel kalite" }
+      {
+        "name": "Daikin",
+        "logo": "",
+        "desc": "Japon teknolojisi, Türkiye'nin 1 numaralı klima markası"
+      },
+      {
+        "name": "Mitsubishi Electric",
+        "logo": "",
+        "desc": "Üstün teknoloji ve güvenilirlik"
+      },
+      {
+        "name": "Bosch",
+        "logo": "",
+        "desc": "Alman mühendisliği ile ev konforu"
+      },
+      {
+        "name": "LG",
+        "logo": "",
+        "desc": "Yenilikçi teknoloji ve enerji tasarrufu"
+      },
+      {
+        "name": "Samsung",
+        "logo": "",
+        "desc": "Akıllı ev çözümleri"
+      },
+      {
+        "name": "Arçelik",
+        "logo": "",
+        "desc": "Yerli marka, küresel kalite"
+      }
     ],
     "advantages": [
       "Orijinal yedek parça garantisi",
@@ -196,12 +260,30 @@
   "footer": {
     "tagline": "Niğde'nin güvenilir soğutma çözüm ortağı.",
     "quick_links": [
-      { "label": "Anasayfa", "url": "/" },
-      { "label": "Hizmetler", "url": "/hizmetler.html" },
-      { "label": "Hakkımızda", "url": "/hakkimizda.html" },
-      { "label": "Yetkili Servis", "url": "/yetkili-servis.html" },
-      { "label": "Galeri", "url": "/galeri.html" },
-      { "label": "İletişim", "url": "/iletisim.html" }
+      {
+        "label": "Anasayfa",
+        "url": "/"
+      },
+      {
+        "label": "Hizmetler",
+        "url": "/hizmetler.html"
+      },
+      {
+        "label": "Hakkımızda",
+        "url": "/hakkimizda.html"
+      },
+      {
+        "label": "Yetkili Servis",
+        "url": "/yetkili-servis.html"
+      },
+      {
+        "label": "Galeri",
+        "url": "/galeri.html"
+      },
+      {
+        "label": "İletişim",
+        "url": "/iletisim.html"
+      }
     ],
     "copyright": "© 2024 Everest Soğutma. Tüm hakları saklıdır."
   }

@@ -17,7 +17,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   initRevealAnimations();
   initPageTransitions();
   initWhatsappFab();
-  applyDynamicContent();
+  applyDynamicContent();   // admin verilerini uygula (stats dahil)
+  initCounters();          // counter'ları SON çağır (güncel değerleri anime etsin)
 });
 
 // ─── Hizmet İkonları ──────────────────────────────────────────────
@@ -442,8 +443,9 @@ function animateCounter(el, target, duration = 1500) {
   requestAnimationFrame(update);
 }
 
-// Trigger counters when visible
-document.addEventListener('DOMContentLoaded', () => {
+// Counter'ları başlat — applyDynamicContent'TEN SONRA çağrılır
+// (böylece admin'den gelen güncel değerleri anime eder, eskiyi değil)
+function initCounters() {
   const stats = document.querySelectorAll('.stat-value');
   if (!stats.length) return;
 
@@ -457,10 +459,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.5 });
 
   stats.forEach(el => {
-    el.dataset.value = el.textContent;
+    el.dataset.value = el.textContent;   // güncel (admin) değeri yakala
     observer.observe(el);
   });
-});
+}
 
 // ─── Gallery Lightbox ─────────────────────────────────────────────
 function initLightbox() {
