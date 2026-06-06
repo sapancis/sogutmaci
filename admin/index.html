@@ -442,6 +442,21 @@
               <input type="file" id="logo-file-input" accept="image/*" style="display:none;">
             </div>
             <button class="btn btn-primary" id="upload-logo-btn" style="margin-top:12px;" disabled>Logo Yükle</button>
+
+            <hr style="margin:24px 0;border:none;border-top:1px solid var(--gray-200);">
+            <h3 style="font-size:15px;font-weight:700;margin-bottom:8px;">Favicon (Sekme İkonu)</h3>
+            <p style="font-size:13px;color:var(--gray-500);margin-bottom:14px;">Tarayıcı sekmesinde görünen küçük ikon. Kare PNG önerilir (32x32 veya 64x64).</p>
+            <div class="current-logo" id="current-favicon-wrap">
+              <img src="/images/favicon.ico" id="current-favicon-img" height="40" alt="Favicon" style="background:var(--gray-100);padding:4px;border-radius:8px;" onerror="this.style.opacity=0.3">
+              <p>Mevcut favicon</p>
+            </div>
+            <div class="upload-zone" id="favicon-upload-zone" style="max-width:440px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <p>Favicon yüklemek için tıklayın</p>
+              <p style="font-size:12px;margin-top:4px;">PNG / ICO — Kare olması önerilir</p>
+              <input type="file" id="favicon-file-input" accept="image/*,.ico" style="display:none;">
+            </div>
+            <button class="btn btn-primary" id="upload-favicon-btn" style="margin-top:12px;" disabled>Favicon Yükle</button>
           </div>
         </div>
 

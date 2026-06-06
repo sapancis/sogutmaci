@@ -31,7 +31,7 @@
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js" defer></script>
 
   <!-- Service Worker kaydı -->
-  <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+  <script>if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>r.unregister()));if(window.caches){caches.keys().then(ks=>ks.forEach(k=>caches.delete(k)));}}</script>
 
   <script type="application/ld+json">
   {
@@ -196,7 +196,7 @@
         </div>
         <h3 class="service-title">Klima Montaj ve Kurulum</h3>
         <p class="service-desc">Ev ve işyeriniz için profesyonel klima montaj ve kurulum hizmetleri.</p>
-        <a href="/hizmet/klima-montaj.html" class="service-link">
+        <a href="/hizmet.html?id=klima-montaj" class="service-link">
           Detaylı İncele
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -208,7 +208,7 @@
         </div>
         <h3 class="service-title">Klima Bakım ve Onarım</h3>
         <p class="service-desc">Klimanızın ömrünü uzatın, enerji tasarrufu sağlayın.</p>
-        <a href="/hizmet/klima-bakim.html" class="service-link">
+        <a href="/hizmet.html?id=klima-bakim" class="service-link">
           Detaylı İncele
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -220,7 +220,7 @@
         </div>
         <h3 class="service-title">Soğuk Hava Deposu</h3>
         <p class="service-desc">Endüstriyel ve ticari soğuk hava deposu tasarım ve kurulumu.</p>
-        <a href="/hizmet/soguk-hava-deposu.html" class="service-link">
+        <a href="/hizmet.html?id=soguk-hava-deposu" class="service-link">
           Detaylı İncele
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -385,12 +385,12 @@
     <div class="footer-col">
       <h4>Hizmetler</h4>
       <div class="footer-links">
-        <a href="/hizmet/klima-montaj.html" class="footer-link">Klima Montaj</a>
-        <a href="/hizmet/klima-bakim.html" class="footer-link">Klima Bakım</a>
-        <a href="/hizmet/soguk-hava-deposu.html" class="footer-link">Soğuk Hava Deposu</a>
-        <a href="/hizmet/soguk-hava-bakim.html" class="footer-link">Depo Servisi</a>
-        <a href="/hizmet/sanayi-klima.html" class="footer-link">Sanayi Soğutma</a>
-        <a href="/hizmet/enerji-verimliligi.html" class="footer-link">Enerji Verimliliği</a>
+        <a href="/hizmet.html?id=klima-montaj" class="footer-link">Klima Montaj</a>
+        <a href="/hizmet.html?id=klima-bakim" class="footer-link">Klima Bakım</a>
+        <a href="/hizmet.html?id=soguk-hava-deposu" class="footer-link">Soğuk Hava Deposu</a>
+        <a href="/hizmet.html?id=soguk-hava-bakim" class="footer-link">Depo Servisi</a>
+        <a href="/hizmet.html?id=sanayi-klima" class="footer-link">Sanayi Soğutma</a>
+        <a href="/hizmet.html?id=enerji-verimliligi" class="footer-link">Enerji Verimliliği</a>
       </div>
     </div>
 

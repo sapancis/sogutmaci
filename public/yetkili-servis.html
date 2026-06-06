@@ -16,7 +16,7 @@
   <link rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
   <!-- SW -->
-  <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+  <script>if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>r.unregister()));if(window.caches){caches.keys().then(ks=>ks.forEach(k=>caches.delete(k)));}}</script>
   
 </head>
 <body>
@@ -155,12 +155,12 @@
       <a href="/iletisim.html" class="footer-link">İletişim</a>
     </div></div>
     <div class="footer-col"><h4>Hizmetler</h4><div class="footer-links">
-      <a href="/hizmet/klima-montaj.html" class="footer-link">Klima Montaj</a>
-      <a href="/hizmet/klima-bakim.html" class="footer-link">Klima Bakım</a>
-      <a href="/hizmet/soguk-hava-deposu.html" class="footer-link">Soğuk Hava Deposu</a>
-      <a href="/hizmet/soguk-hava-bakim.html" class="footer-link">Depo Servisi</a>
-      <a href="/hizmet/sanayi-klima.html" class="footer-link">Sanayi Soğutma</a>
-      <a href="/hizmet/enerji-verimliligi.html" class="footer-link">Enerji Verimliliği</a>
+      <a href="/hizmet.html?id=klima-montaj" class="footer-link">Klima Montaj</a>
+      <a href="/hizmet.html?id=klima-bakim" class="footer-link">Klima Bakım</a>
+      <a href="/hizmet.html?id=soguk-hava-deposu" class="footer-link">Soğuk Hava Deposu</a>
+      <a href="/hizmet.html?id=soguk-hava-bakim" class="footer-link">Depo Servisi</a>
+      <a href="/hizmet.html?id=sanayi-klima" class="footer-link">Sanayi Soğutma</a>
+      <a href="/hizmet.html?id=enerji-verimliligi" class="footer-link">Enerji Verimliliği</a>
     </div></div>
     <div class="footer-col"><h4>İletişim</h4>
       <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-footer-address>Niğde Merkez</span></div>

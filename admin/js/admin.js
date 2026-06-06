@@ -664,6 +664,10 @@ async function loadSettings() {
       img.src = settings.logo + '?t=' + Date.now();
       document.getElementById('sidebar-logo').src = settings.logo;
     }
+    if (settings.favicon) {
+      const fav = document.getElementById('current-favicon-img');
+      if (fav) fav.src = settings.favicon + '?t=' + Date.now();
+    }
     if (settings.smtp) {
       document.getElementById('smtp-host').value = settings.smtp.host || '';
       document.getElementById('smtp-port').value = settings.smtp.port || 587;
@@ -721,6 +725,27 @@ document.addEventListener('DOMContentLoaded', () => {
       showAlert('logo-alert', 'Logo güncellendi');
     } catch(e) { showAlert('logo-alert', 'Logo yüklenemedi', 'error'); }
     finally { uploadLogoBtn.disabled = false; uploadLogoBtn.textContent = 'Logo Yükle'; }
+  });
+
+  // ── Favicon yükleme ──
+  const favZone = document.getElementById('favicon-upload-zone');
+  const favInput = document.getElementById('favicon-file-input');
+  const uploadFavBtn = document.getElementById('upload-favicon-btn');
+  favZone?.addEventListener('click', () => favInput.click());
+  favInput?.addEventListener('change', () => { uploadFavBtn.disabled = !favInput.files.length; });
+  uploadFavBtn?.addEventListener('click', async () => {
+    if (!favInput.files.length) return;
+    const fd = new FormData();
+    fd.append('favicon', favInput.files[0]);
+    uploadFavBtn.disabled = true;
+    uploadFavBtn.textContent = 'Yükleniyor...';
+    try {
+      const res = await fetch('/api/settings/favicon', { method: 'POST', headers: { Authorization: 'Bearer ' + TOKEN() }, body: fd });
+      const data = await res.json();
+      document.getElementById('current-favicon-img').src = data.url + '?t=' + Date.now();
+      showAlert('logo-alert', 'Favicon güncellendi');
+    } catch(e) { showAlert('logo-alert', 'Favicon yüklenemedi', 'error'); }
+    finally { uploadFavBtn.disabled = false; uploadFavBtn.textContent = 'Favicon Yükle'; }
   });
 });
 

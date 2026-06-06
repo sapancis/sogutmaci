@@ -16,7 +16,7 @@
   <link rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
   <!-- SW -->
-  <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+  <script>if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>r.unregister()));if(window.caches){caches.keys().then(ks=>ks.forEach(k=>caches.delete(k)));}}</script>
 </head>
 <body>
 
@@ -83,7 +83,7 @@
         </div>
         <h2 class="service-title">Klima Montaj ve Kurulum</h2>
         <p class="service-desc">Split, multi-split ve kaset tipi klimaları profesyonel ekibimizle kuruyoruz. Doğru yer seçiminden elektrik tesisatına kadar tüm süreçler eksiksiz.</p>
-        <a href="/hizmet/klima-montaj.html" class="service-link">
+        <a href="/hizmet.html?id=klima-montaj" class="service-link">
           Detaylı İncele <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
@@ -94,7 +94,7 @@
         </div>
         <h2 class="service-title">Klima Bakım ve Onarım</h2>
         <p class="service-desc">Filtre temizliği, gaz dolumu, elektrik kontrolü ve kapsamlı sistem bakımı. Klimanızın ömrünü uzatın, enerji tasarrufu sağlayın.</p>
-        <a href="/hizmet/klima-bakim.html" class="service-link">
+        <a href="/hizmet.html?id=klima-bakim" class="service-link">
           Detaylı İncele <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
@@ -105,7 +105,7 @@
         </div>
         <h2 class="service-title">Soğuk Hava Deposu Kurulumu</h2>
         <p class="service-desc">Market, restoran, otel ve fabrikalar için özel tasarım soğuk hava depoları. +5°C ile -30°C arasında değişen sıcaklık aralıkları.</p>
-        <a href="/hizmet/soguk-hava-deposu.html" class="service-link">
+        <a href="/hizmet.html?id=soguk-hava-deposu" class="service-link">
           Detaylı İncele <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
@@ -116,7 +116,7 @@
         </div>
         <h2 class="service-title">Soğuk Hava Deposu Servisi</h2>
         <p class="service-desc">Mevcut depolarınız için periyodik bakım ve acil onarım. Kompresör, evaporatör ve kondenser bakımı, gaz kaçağı tespiti.</p>
-        <a href="/hizmet/soguk-hava-bakim.html" class="service-link">
+        <a href="/hizmet.html?id=soguk-hava-bakim" class="service-link">
           Detaylı İncele <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
@@ -127,7 +127,7 @@
         </div>
         <h2 class="service-title">Sanayi Tipi Soğutma</h2>
         <p class="service-desc">VRF/VRV sistemler, chiller'lar ve endüstriyel soğutma grupları. Büyük ölçekli fabrika ve tesis projeleri için uzman çözümler.</p>
-        <a href="/hizmet/sanayi-klima.html" class="service-link">
+        <a href="/hizmet.html?id=sanayi-klima" class="service-link">
           Detaylı İncele <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
@@ -138,7 +138,7 @@
         </div>
         <h2 class="service-title">Enerji Verimliliği</h2>
         <p class="service-desc">Sistemlerinizi analiz ederek enerji tasarrufu fırsatlarını belirliyor, A+ ve üzeri sınıf ürünlerle maliyetlerinizi %40'a kadar düşürüyoruz.</p>
-        <a href="/hizmet/enerji-verimliligi.html" class="service-link">
+        <a href="/hizmet.html?id=enerji-verimliligi" class="service-link">
           Detaylı İncele <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
@@ -187,11 +187,11 @@
     <div class="footer-col">
       <h4>Hizmetler</h4>
       <div class="footer-links">
-        <a href="/hizmet/klima-montaj.html" class="footer-link">Klima Montaj</a>
-        <a href="/hizmet/klima-bakim.html" class="footer-link">Klima Bakım</a>
-        <a href="/hizmet/soguk-hava-deposu.html" class="footer-link">Soğuk Hava Deposu</a>
-        <a href="/hizmet/sanayi-klima.html" class="footer-link">Sanayi Soğutma</a>
-        <a href="/hizmet/enerji-verimliligi.html" class="footer-link">Enerji Verimliliği</a>
+        <a href="/hizmet.html?id=klima-montaj" class="footer-link">Klima Montaj</a>
+        <a href="/hizmet.html?id=klima-bakim" class="footer-link">Klima Bakım</a>
+        <a href="/hizmet.html?id=soguk-hava-deposu" class="footer-link">Soğuk Hava Deposu</a>
+        <a href="/hizmet.html?id=sanayi-klima" class="footer-link">Sanayi Soğutma</a>
+        <a href="/hizmet.html?id=enerji-verimliligi" class="footer-link">Enerji Verimliliği</a>
       </div>
     </div>
     <div class="footer-col">

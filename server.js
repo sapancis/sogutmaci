@@ -361,6 +361,18 @@ app.post('/api/settings/logo', authMiddleware, upload.single('logo'), (req, res)
   }
 });
 
+app.post('/api/settings/favicon', authMiddleware, upload.single('favicon'), (req, res) => {
+  try {
+    if (!req.file) return res.status(400).json({ error: 'Favicon yüklenmedi' });
+    const settings = readJSON(SETTINGS_FILE);
+    settings.favicon = '/uploads/' + req.file.filename;
+    writeJSON(SETTINGS_FILE, settings);
+    res.json({ url: settings.favicon });
+  } catch {
+    res.status(500).json({ error: 'Favicon yüklenemedi' });
+  }
+});
+
 // ─── CONTACT ROUTE ───────────────────────────────────────────────────────────
 
 app.post('/api/contact', async (req, res) => {

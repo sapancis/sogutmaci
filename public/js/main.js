@@ -12,11 +12,130 @@ document.addEventListener('DOMContentLoaded', async () => {
   initLoader();
   initHeader();
   initMobileNav();
+  renderServices();        // hizmet kartlarını doldur
+  renderServiceDetail();   // hizmet detay sayfasını doldur
   initRevealAnimations();
   initPageTransitions();
   initWhatsappFab();
   applyDynamicContent();
 });
+
+// ─── Hizmet İkonları ──────────────────────────────────────────────
+const SERVICE_ICONS = {
+  wind:     '<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>',
+  tool:     '<path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>',
+  box:      '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/>',
+  settings: '<circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/><path d="M15.54 8.46a5 5 0 010 7.07M8.46 8.46a5 5 0 000 7.07"/>',
+  cpu:      '<rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/>',
+  zap:      '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
+  default:  '<path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/>'
+};
+function serviceIconSvg(icon) {
+  const path = SERVICE_ICONS[icon] || SERVICE_ICONS.default;
+  return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">${path}</svg>`;
+}
+
+// ─── Hizmet Kartlarını Render Et (anasayfa + hizmetler sayfası) ───
+function renderServices() {
+  const services = siteContent?.services || [];
+  if (!services.length) return;
+
+  // Anasayfa: ilk 3 hizmet
+  const homeGrid = document.getElementById('services-grid');
+  if (homeGrid) {
+    homeGrid.innerHTML = services.slice(0, 3).map((s, i) => serviceCardHTML(s, i, 'h3')).join('');
+  }
+
+  // Hizmetler sayfası: tüm hizmetler
+  const allGrid = document.getElementById('all-services-grid');
+  if (allGrid) {
+    allGrid.innerHTML = services.map((s, i) => serviceCardHTML(s, i, 'h2')).join('');
+  }
+}
+
+function serviceCardHTML(s, i, titleTag) {
+  return `
+    <div class="service-card" data-reveal data-reveal-delay="${(i % 6) + 1}">
+      <div class="service-icon">${serviceIconSvg(s.icon)}</div>
+      <${titleTag} class="service-title">${s.title || ''}</${titleTag}>
+      <p class="service-desc">${s.short_desc || ''}</p>
+      <a href="/hizmet.html?id=${encodeURIComponent(s.id)}" class="service-link">
+        Detaylı İncele
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>`;
+}
+
+// ─── Hizmet Detay Sayfasını Render Et (/hizmet.html?id=xxx) ───────
+function renderServiceDetail() {
+  const root = document.getElementById('service-detail-root');
+  if (!root) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+  const services = siteContent?.services || [];
+  const service = services.find(s => s.id === id) || services[0];
+
+  if (!service) {
+    root.innerHTML = '<div class="container" style="padding:80px 24px;text-align:center;"><h1>Hizmet bulunamadı</h1><a href="/hizmetler.html" class="btn-primary" style="margin-top:24px;">Tüm Hizmetler</a></div>';
+    return;
+  }
+
+  // Başlık / SEO
+  document.title = `${service.title} | Everest Soğutma Niğde`;
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) metaDesc.setAttribute('content', service.short_desc || service.title);
+
+  const features = service.features || [];
+  const featuresHTML = features.map(f =>
+    `<div class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>${f}</div>`
+  ).join('');
+
+  const otherServices = services.map(s =>
+    `<a href="/hizmet.html?id=${encodeURIComponent(s.id)}" class="service-list-link${s.id === service.id ? ' active' : ''}">${s.title}</a>`
+  ).join('');
+
+  const imageHTML = service.image
+    ? `<div style="margin-bottom:32px;border-radius:18px;overflow:hidden;"><img src="${service.image}" alt="${service.title}" style="width:100%;display:block;" loading="lazy"></div>`
+    : '';
+
+  root.innerHTML = `
+    <section class="page-hero"><div class="page-hero-inner">
+      <p class="page-hero-label">Hizmetlerimiz</p>
+      <h1 class="page-hero-title">${service.title}</h1>
+      <p class="page-hero-subtitle">${service.short_desc || ''}</p>
+      <nav class="breadcrumb">
+        <a href="/">Anasayfa</a><span class="sep">›</span>
+        <a href="/hizmetler.html">Hizmetler</a><span class="sep">›</span>
+        <span>${service.title}</span>
+      </nav>
+    </div></section>
+
+    <section class="section"><div class="container"><div class="service-detail-grid">
+      <div>
+        ${imageHTML}
+        <div data-reveal>
+          <h2 style="font-size:26px;font-weight:800;color:var(--gray-900);margin-bottom:18px;">${service.title}</h2>
+          <div style="font-size:16px;color:var(--gray-500);line-height:1.8;">${(service.content || '').replace(/\n/g, '<br>')}</div>
+        </div>
+        ${features.length ? `<div class="service-features-list" data-reveal data-reveal-delay="2">${featuresHTML}</div>` : ''}
+      </div>
+      <div class="service-sidebar" data-reveal data-reveal-delay="3">
+        <div class="contact-card">
+          <h3>Hızlı Teklif Alın</h3>
+          <p>Ücretsiz keşif ve fiyat teklifi için bize ulaşın.</p>
+          <a href="/iletisim.html" style="display:block;text-align:center;margin-top:20px;padding:14px;border-radius:10px;font-size:15px;font-weight:700;background:rgba(255,255,255,.15);color:#fff;border:1.5px solid rgba(255,255,255,.3);">Teklif Formu →</a>
+        </div>
+        <div class="service-list-card">
+          <h4>Tüm Hizmetler</h4>
+          ${otherServices}
+        </div>
+      </div>
+    </div></div></section>`;
+
+  // Yeni eklenen reveal'leri tetikle
+  root.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('revealed'));
+}
 
 // ─── Load Data ────────────────────────────────────────────────────
 async function loadSiteData() {
@@ -186,6 +305,12 @@ function applyDynamicContent() {
   if (siteSettings?.site_name) {
     setText('[data-site-name]', siteSettings.site_name);
   }
+  // Favicon
+  if (siteSettings?.favicon) {
+    document.querySelectorAll('link[rel="icon"], link[rel="shortcut icon"]').forEach(l => {
+      l.href = siteSettings.favicon + '?v=' + Date.now();
+    });
+  }
 
   // ═══ FOOTER ═══
   if (C.footer) {
@@ -344,6 +469,8 @@ function initLightbox() {
   let currentIndex = 0;
 
   document.querySelectorAll('.gallery-item').forEach((item, i) => {
+    if (item._lightboxBound) return; // tekrar bağlamayı önle
+    item._lightboxBound = true;
     item.addEventListener('click', () => {
       items = Array.from(document.querySelectorAll('.gallery-item img'));
       currentIndex = i;
@@ -380,4 +507,5 @@ function initLightbox() {
   }
 }
 
+window.initLightbox = initLightbox;
 document.addEventListener('DOMContentLoaded', initLightbox);
